@@ -1,0 +1,7 @@
+邦邦社区--整体配置说明
+1.设计风格: 基于Material Design
+2.注解:   Android Annotations
+3.网络请求: OkHttp
+4.图片处理: fresco
+5.组件间通讯: EventBus
+6.数据库: greenDao(最强大)
