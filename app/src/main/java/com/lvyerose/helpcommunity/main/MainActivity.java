@@ -11,6 +11,12 @@ import android.view.MenuItem;
 
 import com.lvyerose.helpcommunity.R;
 
+/**
+ * author: lvyeRose
+ * objective:   首页功能，负责底部菜单切换，顶部导航栏，切换侧滑菜单 等
+ * mailbox: lvyerose@163.com
+ * time: 15/9/25 17:03
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
