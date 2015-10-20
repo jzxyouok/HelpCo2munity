@@ -17,6 +17,7 @@ import com.lvyerose.helpcommunity.R;
  * mailbox: lvyerose@163.com
  * time: 15/9/25 17:03
  */
+//Test update
 public class MainActivity extends AppCompatActivity {
 
     @Override
