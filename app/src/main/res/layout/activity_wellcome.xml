@@ -43,7 +43,6 @@
         />
 
     <com.romainpiel.shimmer.ShimmerTextView
-        android:layout_above="@+id/id_bottom_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="欢迎光临邦邦社区"
@@ -51,22 +50,23 @@
         android:gravity="center"
         android:textColor="#305050"
         android:textStyle="bold|italic"
-        android:layout_marginBottom="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="68dp"
         android:id="@+id/id_wctxt_shr"
         />
 
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1秒"
-        android:textColor="#556869"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
-        android:visibility="invisible"
-        android:id="@+id/id_bottom_tv"
-        />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="1秒"-->
+        <!--android:textColor="#556869"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="36dp"-->
+        <!--android:visibility="invisible"-->
+        <!--android:id="@+id/id_bottom_tv"-->
+        <!--/>-->
 
 </RelativeLayout>

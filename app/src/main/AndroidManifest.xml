@@ -14,7 +14,8 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".wellcome.WellComeActivity_"
-            android:theme="@style/ActivityWellComeTheme">
+            android:theme="@style/ActivityWellComeTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
