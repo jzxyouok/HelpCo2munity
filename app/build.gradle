@@ -28,6 +28,8 @@ dependencies {
     compile 'com.android.support:design:23.0.1'
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
+    compile 'com.romainpiel.shimmer:library:1.4.0@aar'                  //文字高亮扫描
+    compile 'tyrantgit:explosionfield:1.0.1'                            //控件粉碎
 }
 
 apt {
