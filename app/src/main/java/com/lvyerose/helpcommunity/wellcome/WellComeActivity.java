@@ -40,15 +40,15 @@ public class WellComeActivity extends AppCompatActivity {
     ShimmerTextView mWellCome_st;
 
     private ExplosionField mExplosionField;
-    private Shimmer shimmer; // 文字高亮扫描类
+    private Shimmer shimmer;                                    // 文字高亮扫描类
 
     @AfterViews
     void init() {
         getSupportActionBar().hide();
         startWdigtAnim(mTop_imv, mLeft_imv, mRight_imv, mWellCome_st);
         mExplosionField = ExplosionField.attach2Window(this);   //实例化粉碎动画
-        initShimmer();  // 初始化文字扫描动画类
-        shimmer.start(mWellCome_st);    //开启文字动画扫描
+        initShimmer();                                          // 初始化文字扫描动画类
+        shimmer.start(mWellCome_st);                            //开启文字动画扫描
 
     }
 
