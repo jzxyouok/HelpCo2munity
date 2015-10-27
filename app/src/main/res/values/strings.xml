@@ -6,4 +6,12 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_main_full">MainFullActivity</string>
+
+    <!-- 侧滑菜单字符串资源 -->
+    <string name="drawer_item_me_zone">个人空间</string>
+    <string name="drawer_item_me_collect">我的收藏</string>
+    <string name="drawer_item_me_participate">我参与的</string>
+    <string name="drawer_item_chicken_soup">心灵鸡汤</string>
+    <string name="drawer_item_advice_feedback">意见反馈</string>
+    <string name="drawer_item_about_us">关于我们</string>
 </resources>

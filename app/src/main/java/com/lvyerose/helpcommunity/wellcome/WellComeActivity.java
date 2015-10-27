@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.lvyerose.helpcommunity.R;
-import com.lvyerose.helpcommunity.main.MainActivity;
+import com.lvyerose.helpcommunity.main.MainActivity_;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
@@ -149,7 +149,7 @@ public class WellComeActivity extends AppCompatActivity {
 
     @UiThread
     void jumpActivity() {        //页面自动跳转
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, MainActivity_.class));
         overridePendingTransition(R.anim.wellcome_alpha_in, R.anim.wellcome_alpha_in);
         finish();
         overridePendingTransition(R.anim.wellcome_alpha_in, R.anim.wellcome_alpha_out);// 淡出淡入动画效果
