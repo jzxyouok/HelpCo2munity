@@ -1,17 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_ground_color"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    tools:context="com.lvyerose.sliding.MainActivity">
 
-
-    <include
-        layout="@layout/app_bar_main"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/layout_top_main">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_above="@+id/id_foot_rgp"
+        android:layout_below="@+id/layout_top_main"
+        >
+
+    </LinearLayout>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:id="@+id/id_foot_rgp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/main_color_two"
+        >
+        <RadioButton
+            android:id="@+id/id_find_gb"
+            style="@style/RadioButton_setting"
+            android:checked="true"
+            android:drawableTop="@drawable/foot_find_select"
+            android:text="发 现"
+            />
+
+        <RadioButton
+            android:id="@+id/id_friend_gb"
+            style="@style/RadioButton_setting"
+            android:drawableTop="@drawable/foot_friend_select"
+            android:text="好 友"
+            />
+
+        <RadioButton
+            android:id="@+id/id_add_gb"
+            style="@style/RadioButton_setting"
+            android:drawableTop="@drawable/foot_message_select"
+            android:text="消 息"
+            />
+
+        <RadioButton
+            android:id="@+id/id_message_gb"
+            style="@style/RadioButton_setting"
+            android:drawableTop="@drawable/foot_message_select"
+            android:text="消 息"
+            />
+
+        <RadioButton
+            android:id="@+id/id_helpping_gb"
+            android:drawableTop="@drawable/foot_helpping_select"
+            style="@style/RadioButton_setting"
+            android:text="邦 邦"
+            android:textColor="@drawable/foot_text_color_select"
+            />
+    </RadioGroup>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/foot_add_select"
+            android:id="@+id/id_add_imv"
+            android:background="@null"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
 </RelativeLayout>
+
+
+
