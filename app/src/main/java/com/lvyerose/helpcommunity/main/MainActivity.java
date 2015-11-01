@@ -1,14 +1,21 @@
 package com.lvyerose.helpcommunity.main;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.lvyerose.helpcommunity.R;
+import com.lvyerose.helpcommunity.base.FragmentControl;
+import com.lvyerose.helpcommunity.found.FindFragment;
+import com.lvyerose.helpcommunity.helping.HelppingFragment;
+import com.lvyerose.helpcommunity.im.FriendFragment;
+import com.lvyerose.helpcommunity.im.MessageFragment;
 import com.mikepenz.crossfadedrawerlayout.view.CrossfadeDrawerLayout;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -29,6 +36,9 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * author: lvyeRose
  * objective:   首页功能，负责底部菜单切换，顶部导航栏，切换侧滑菜单 等
@@ -45,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
     @ViewById(R.id.id_add_imv)
     ImageView addImv;
 
+    @ViewById(R.id.id_foot_rgp)
+    RadioGroup mRgp;
+    final int mLayoutId = R.id.layout_content_main;
+    private FragmentControl mFragmentControl;
+    private List<Fragment> mFragmentList = new ArrayList<>();
 
     @AfterViews
     void init(){
@@ -53,6 +68,15 @@ public class MainActivity extends AppCompatActivity {
         initDrawer(toolbar);
         onAddClick();
 
+    }
+    @AfterViews
+    void setFragments(){
+        mFragmentList.add(new FindFragment());
+        mFragmentList.add(new MessageFragment());
+        mFragmentList.add(new Fragment());
+        mFragmentList.add(new FriendFragment());
+        mFragmentList.add(new HelppingFragment());
+        mFragmentControl = new FragmentControl(getSupportFragmentManager() , mFragmentList, mLayoutId , mRgp);
     }
 
     /**

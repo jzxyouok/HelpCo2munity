@@ -1,6 +1,9 @@
 package com.lvyerose.helpcommunity.base;
 
 import android.app.Application;
+import android.content.Context;
+
+import com.tencent.bugly.crashreport.CrashReport;
 
 /**
  * author: lvyeRose
@@ -18,7 +21,16 @@ public class BaseApplication extends Application{
     public void onCreate() {
         super.onCreate();
         application = this;
+        initCrashReport(this);
 
 
+    }
+
+    /**
+     *  腾讯bug捕捉初始化
+     * @param appContext
+     */
+    public void initCrashReport(Context appContext){
+        CrashReport.initCrashReport(appContext, "900011750", false);
     }
 }

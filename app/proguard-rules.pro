@@ -15,3 +15,6 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+#腾讯bug捕捉避免混淆
+-keep public class com.tencent.bugly.**{*;}

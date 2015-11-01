@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
+apply plugin: 'bugly'   //添加Bugly符号表插件
 
 def AAVersion = '3.3.2'
 android {
@@ -25,7 +26,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:design:23.0.1'
-    
+
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
 
@@ -39,11 +40,14 @@ dependencies {
         transitive = true
     }
 
-    compile 'com.mikepenz:crossfader:1.1.3@aar'
-    compile ('com.mikepenz:crossfadedrawerlayout:0.0.1-SNAPSHOT@aar')
+    compile 'com.mikepenz:crossfader:1.1.3@aar'                         //侧滑菜单样式更改
+    compile ('com.mikepenz:crossfadedrawerlayout:0.0.1-SNAPSHOT@aar')   //图标库
 
-    compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'             //图标库
 
+    compile 'de.greenrobot:eventbus:2.4.0'                          //Event Bus
+
+    compile 'com.tencent.bugly:crashreport:1.2.6'  //其中<version>替换为当前最新的Bugly SDK版本号
 }
 
 apt {
@@ -51,4 +55,9 @@ apt {
         androidManifestFile variant.outputs[0].processResources.manifestFile
 //        resourcePackageName 'com.lvyerose.helpcommunity'
     }
+}
+
+bugly {
+    appId = '900011750'    //注册时分配的App ID
+    appKey = 'NkhQWaTEKQ9jR8Gz'  //注册时分配的App Key
 }
