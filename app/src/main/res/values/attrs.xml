@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="find_top_arrays">
+
+        <item>好友动态</item>
+
+        <item>社区动态</item>
+
+        <item>热门活动</item>
+
+    </string-array>
+    <string-array name="main_title_arrays">
+
+        <item>发 现</item>
+
+        <item>好 友</item>
+
+        <item>发 布</item>
+
+        <item>消 息</item>
+
+        <item>邦 邦</item>
+
+    </string-array>
+
+</resources>

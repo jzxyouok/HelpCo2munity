@@ -1,21 +1,23 @@
 package com.lvyerose.helpcommunity.main;
 
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lvyerose.helpcommunity.R;
+import com.lvyerose.helpcommunity.base.BaseActivity;
 import com.lvyerose.helpcommunity.base.FragmentControl;
-import com.lvyerose.helpcommunity.found.FindFragment;
-import com.lvyerose.helpcommunity.helping.HelppingFragment;
-import com.lvyerose.helpcommunity.im.FriendFragment;
-import com.lvyerose.helpcommunity.im.MessageFragment;
+import com.lvyerose.helpcommunity.found.FindFragment_;
+import com.lvyerose.helpcommunity.helping.HelppingFragment_;
+import com.lvyerose.helpcommunity.im.FriendFragment_;
+import com.lvyerose.helpcommunity.im.MessageFragment_;
 import com.mikepenz.crossfadedrawerlayout.view.CrossfadeDrawerLayout;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -30,14 +32,19 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.mikepenz.materialdrawer.util.DrawerUIUtils;
+import com.mikepenz.materialdrawer.view.BezelImageView;
 import com.mikepenz.materialize.util.UIUtils;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.StringArrayRes;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * author: lvyeRose
@@ -46,57 +53,81 @@ import java.util.List;
  * time: 15/9/25 17:03
  */
 @EActivity(R.layout.activity_main)
-public class MainActivity extends AppCompatActivity {
-    //save our header or result
+public class MainActivity extends BaseActivity {
+    //底部导航
     private AccountHeader headerResult = null;
     private Drawer result = null;
     private MiniDrawer miniResult = null;
     private CrossfadeDrawerLayout crossfadeDrawerLayout = null;
-    @ViewById(R.id.id_add_imv)
-    ImageView addImv;
-
+    @ViewById(R.id.id_title_tv)
+    TextView mTitle;
+    //切换控制
     @ViewById(R.id.id_foot_rgp)
     RadioGroup mRgp;
     final int mLayoutId = R.id.layout_content_main;
     private FragmentControl mFragmentControl;
     private List<Fragment> mFragmentList = new ArrayList<>();
+    private int[] resIconIds = new int[]{
+            R.drawable.foot_find_select,
+            R.drawable.foot_friend_select,
+            R.drawable.foot_message_select,
+            R.drawable.foot_message_select,
+            R.drawable.foot_helpping_select
+    };
+
+    @StringArrayRes(R.array.main_title_arrays)
+    String[] titles;
+    @ViewById(R.id.id_user_bimv)
+    BezelImageView userIcon_bimv;
+
 
     @AfterViews
-    void init(){
+    void init() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        mTitle.setText(titles[0]);
         setSupportActionBar(toolbar);
         initDrawer(toolbar);
-        onAddClick();
-
+        initRadioButtonIcon();
     }
+
     @AfterViews
-    void setFragments(){
-        mFragmentList.add(new FindFragment());
-        mFragmentList.add(new MessageFragment());
+    void setFragments() {
+        mFragmentList.add(new FindFragment_());
+        mFragmentList.add(new FriendFragment_());
         mFragmentList.add(new Fragment());
-        mFragmentList.add(new FriendFragment());
-        mFragmentList.add(new HelppingFragment());
-        mFragmentControl = new FragmentControl(getSupportFragmentManager() , mFragmentList, mLayoutId , mRgp);
-    }
-
-    /**
-     * 主页添加按钮监听设置
-     */
-    void onAddClick(){
-        addImv.setOnClickListener(new View.OnClickListener() {
+        mFragmentList.add(new MessageFragment_());
+        mFragmentList.add(new HelppingFragment_());
+        mFragmentControl = new FragmentControl(getSupportFragmentManager(), mFragmentList, mLayoutId, mRgp);
+        mFragmentControl.setOnRgsExtraCheckedChangedListener(new FragmentControl.OnRgsExtraCheckedChangedListener() {
             @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext() , "Add" , Toast.LENGTH_SHORT).show();
+            public void OnRgsExtraCheckedChanged(RadioGroup radioGroup, int checkedId, int index) {
+                mTitle.setText(titles[index]);
             }
         });
     }
 
 
     /**
+     * 动态设置RadioButton的图标，可以变换图标 达到合适的大小
+     */
+    void initRadioButtonIcon() {
+        for (int i = 0; i < mRgp.getChildCount(); i++) {
+            RadioButton radioButton = (RadioButton) mRgp.getChildAt(i);
+            Drawable myImage = getResources().getDrawable(resIconIds[i]);
+            myImage.setBounds(1, 1, 56, 56);
+            radioButton.setCompoundDrawables(null, myImage, null, null);
+
+        }
+    }
+
+
+    /**
      * 初始化侧滑菜单
+     *
      * @param toolbar
      */
-    void initDrawer(Toolbar toolbar){
+    void initDrawer(Toolbar toolbar) {
         final IProfile profile = new ProfileDrawerItem().withName("蜀汉玫瑰").withEmail("lvyerose@163.com").withIcon(R.mipmap.ic_launcher);
 
         // Create the AccountHeader
@@ -129,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         //Create the drawer
         result = new DrawerBuilder()
                 .withActivity(this)
-                .withToolbar(toolbar)
+//                .withToolbar(toolbar)
                 .withDrawerLayout(crossfadeDrawerLayout)
                 .withHasStableIds(true)
                 .withDrawerWidthDp(72)
@@ -197,8 +228,39 @@ public class MainActivity extends AppCompatActivity {
         if (result != null && result.isDrawerOpen()) {
             result.closeDrawer();
         } else {
-            super.onBackPressed();
+            new SweetAlertDialog(this)
+                    .setTitleText("您确定不再找找Bug吗？")
+                    .setCancelText(" 退 出 ")
+                    .setConfirmText(" 再看看 ")
+                    .showCancelButton(true)
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            sweetAlertDialog.dismiss();
+                        }
+                    })
+                    .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            sweetAlertDialog.dismiss();
+                            MainActivity.this.finish();
+                        }
+                    })
+                    .show();
         }
+    }
+
+    @Click(R.id.id_user_bimv)
+    void userIconClicked() {
+        if (result != null && !result.isDrawerOpen()) {
+            result.openDrawer();
+        }
+    }
+
+    @Click(R.id.id_add_imv)
+    void addImvClicked() {
+        Toast.makeText(getApplicationContext(), "Add", Toast.LENGTH_SHORT).show();
     }
 
 }

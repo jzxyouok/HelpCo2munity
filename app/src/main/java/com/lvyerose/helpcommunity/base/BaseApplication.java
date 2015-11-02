@@ -23,7 +23,6 @@ public class BaseApplication extends Application{
         application = this;
         initCrashReport(this);
 
-
     }
 
     /**
