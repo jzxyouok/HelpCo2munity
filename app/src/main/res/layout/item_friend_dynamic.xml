@@ -1,0 +1,182 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/listview_item"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <com.mikepenz.materialdrawer.view.BezelImageView
+            android:id="@+id/id_item_userImg_bimv"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/defult_user" />
+
+        <TextView
+            android:id="@+id/id_item_userName_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/id_item_userImg_bimv"
+            android:text="蜀汉玫瑰"
+            android:textColor="#7e81d9"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/id_item_userAdders_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/id_item_userImg_bimv"
+            android:layout_below="@+id/id_item_userName_tv"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/id_item_userImg_bimv"
+            android:gravity="center"
+            android:text="北京朝阳"
+            android:textColor="#ff808080"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/id_item_userTime_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/id_item_userImg_bimv"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="4dp"
+            android:text="11/11 12:00"
+            android:textColor="#8183be"
+            android:textSize="12sp" />
+
+        <View
+            android:id="@+id/id_topLine_view"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignBottom="@+id/id_item_userImg_bimv"
+            android:layout_toRightOf="@+id/id_item_userImg_bimv"
+            android:background="#66808080" />
+
+        <com.ms.square.android.expandabletextview.ExpandableTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/expand_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/id_topLine_view"
+            android:layout_below="@+id/id_topLine_view"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            expandableTextView:maxCollapsedLines="5"
+            expandableTextView:animDuration="200">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@id/expandable_text"
+                android:textSize="16sp"
+                android:autoText="true"
+                android:textColor="#666666" />
+
+            <ImageButton
+                android:id="@id/expand_collapse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="4dp"
+                android:layout_gravity="left|bottom"
+                android:background="@android:color/transparent"/>
+        </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/id_bottomLine_view"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_marginTop="8dp"
+        android:background="#66808080" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:drawablePadding="2dp"
+            android:text="12"
+            android:padding="8dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:textColor="@drawable/item_favour_text_select"
+            android:id="@+id/id_item_favour_tv" />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#88808080" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:textColor="#ff808080"
+            android:padding="8dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:drawablePadding="2dp"
+            android:text="12"
+            android:gravity="center"
+            android:id="@+id/id_item_community_tv"
+            />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#88808080" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/item_collect_select"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_item_collect_imbt" />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#88808080" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_more"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:padding="8dp"
+            android:id="@+id/id_item_more_imbt" />
+
+    </LinearLayout>
+</LinearLayout>

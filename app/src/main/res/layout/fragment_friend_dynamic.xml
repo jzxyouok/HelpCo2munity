@@ -3,15 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     tools:context="layout.MessageFragment">
 
-    <TextView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@color/main_color_two"
-        android:text="好友动态"
-        android:layout_gravity="center"
-        android:gravity="center"
+        android:id="@+id/id_friend_lv"
         />
 
 </LinearLayout>
