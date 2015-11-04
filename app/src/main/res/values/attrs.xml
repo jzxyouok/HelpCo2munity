@@ -62,7 +62,7 @@
         <item>就活最后一天</item>
 
     </string-array>
- <string-array name="datas_friends_city">
+    <string-array name="datas_friends_city">
 
         <item>北京 朝阳</item>
         <item>武汉 某地</item>
@@ -79,6 +79,75 @@
         <item>火星</item>
         <item>北京 某地</item>
         <item>地球上</item>
+
+    </string-array>
+    <string-array name="datas_user_icon">
+
+        <item>http://img.name2012.com/uploads/allimg/2015-06/30-023131_451.jpg</item>
+        <item>http://v1.qzone.cc/avatar/201408/20/17/23/53f468ff9c337550.jpg!200x200.jpg</item>
+        <item>http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=84acc38f9045d688a357baa091f25128/4ec2d5628535e5dda040af6374c6a7efce1b6219.jpg</item>
+        <item>http://v1.qzone.cc/avatar/201404/02/18/09/533be1d6de93b655.jpg!200x200.jpg</item>
+        <item>http://imgsrc.baidu.com/forum/w=580/sign=1d2bf8a08594a4c20a23e7233ef51bac/7852ba51f3deb48f47f7b871f21f3a292cf5782f.jpg</item>
+        <item>http://img.woyaogexing.com/2014/08/15/0e0875831a1790e3!200x200.jpg</item>
+        <item>http://www.cssxn.com/fzl/tupian/201501/2015011412373426.jpg</item>
+        <item>http://static.yingyonghui.com/user_head_img/89/400389profile_img_s.png?t=1406196002245</item>
+        <item>http://v1.qzone.cc/avatar/201408/05/11/59/53e056b312ab7013.jpg!200x200.jpg</item>
+        <item>http://static.yingyonghui.com/user_head_img/13/2216613profile_img_s.png?t=1411861186316</item>
+        <item>http://www.qqbody.com/uploads/allimg/201411/18-200816_318.jpg</item>
+        <item>http://d.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=29ca5ab40ed79123e0b59c70980475b4/0b7b02087bf40ad18193cd5f552c11dfa9ecce13.jpg</item>
+        <item>http://v1.qzone.cc/avatar/201403/15/22/11/53245faf8a2ed399.jpg!200x200.jpg</item>
+        <item>http://www.qqbody.com/uploads/allimg/201411/18-200810_569.jpg</item>
+        <item>http://e.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=81ab35f700087bf47db95fedc7e37b1a/38dbb6fd5266d016951a9494952bd40735fa350e.jpg</item>
+
+    </string-array>
+
+    <string-array name="datas_user_icon_add">
+        <item>http://p4.gexing.com/G1/M00/F2/95/rBACFFI4ZyGBmtMUAAAZXHmumG8935_200x200_3.jpg</item>
+        <item>http://diy.qqjay.com/u2/2013/0429/6eeae2ac89ed8756d9073466ecb19e3f.jpg</item>
+        <item>http://p.3761.com/pic/43431392615721.jpg</item>
+    </string-array>
+
+    <string-array name="datas_friends_city_add">
+
+        <item>武汉 某地</item>
+        <item>长沙 宁乡</item>
+        <item>上海 花家地</item>
+
+    </string-array>
+
+    <string-array name="datas_friends_userName_add">
+
+        <item>叫我新加载</item>
+        <item>我刷新了</item>
+        <item>好名字</item>
+
+    </string-array>
+
+    <string-array name="datas_friends_message_add">
+
+        <item>时间总是太浅，回忆总是太重，时间载不动许多回忆，时间也载不动太多忧伤，那些青葱岁月，已经走远，许多人都不敢回首，怕一旦回首，就找不到回来的路，那些曾经的时光，如指尖的流沙一样，已经悄悄溜走，那些深深浅浅地痕迹已经不知被风带到哪里，我不敢提及，怕一旦提起，就控不住自己的思念，会不经意去追着风的影子，找寻那些散落的痕迹，让自己再次深陷这迷局，所以对于过去始终迟迟不敢提笔，怕一提笔就让陷入深深的执念中，并且永远无法逃离。</item>
+        <item>每个人，或多或少有那么的名字被你尘封于内心深处的角落，是你无法企及的痛，在岁月中虽然刺眼地招摇着，但是你却再也无法去拥有那厚实的温度，那些对于美好爱情的向往，生于他，同时又止于他，所以我们总是会在时光中碎碎念，那个美丽的曾经，但是我们也只是偶尔的回眸，回想那美丽的触动，那温暖的仿若在眼前，但是已经走远，伸手触不到曾经地温度，回首看不到曾经的笑脸，但是不小心看到他的照片那些心动的瞬间，仿若还停留在昨天。那就是我们的初恋。</item>
+        <item>学生时代的感情总是那么的美丽，沉重的课程，如大山一样压着我们，单调而又复始的生活，让我们的身心枯竭，所以在枯燥的学业里，对异性的爱，犹如暗香，在灵魂深处招摇，散发着迷人的香气，同时又在风中召唤，一不小心就会让自己迷失，以至于对方的一颦一笑，都会让你激动不已。</item>
+    </string-array>
+
+
+    <string-array name="datas_user_icon2">
+
+        <item>http://img.name2012.com/uploads/allimg/2015-06/30-023131_451.jpg</item>
+        <item>http://v1.qzone.cc/avatar/201408/20/17/23/53f468ff9c337550.jpg!200x200.jpg</item>
+        <item>http://192.168.1.102/helpcommunity/user_icon/u200201511041720.jpg</item>
+        <item>http://v1.qzone.cc/avatar/201404/02/18/09/533be1d6de93b655.jpg!200x200.jpg</item>
+        <item>http://imgsrc.baidu.com/forum/w=580/sign=1d2bf8a08594a4c20a23e7233ef51bac/7852ba51f3deb48f47f7b871f21f3a292cf5782f.jpg</item>
+        <item>http://img.woyaogexing.com/2014/08/15/0e0875831a1790e3!200x200.jpg</item>
+        <item>http://www.cssxn.com/fzl/tupian/201501/2015011412373426.jpg</item>
+        <item>http://192.168.1.102/helpcommunity/user_icon/u2002015110417201.jpg</item>
+        <item>http://v1.qzone.cc/avatar/201408/05/11/59/53e056b312ab7013.jpg!200x200.jpg</item>
+        <item>http://192.168.1.102/helpcommunity/user_icon/u2002015110417202.jpg</item>
+        <item>http://www.qqbody.com/uploads/allimg/201411/18-200816_318.jpg</item>
+        <item>http://d.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=29ca5ab40ed79123e0b59c70980475b4/0b7b02087bf40ad18193cd5f552c11dfa9ecce13.jpg</item>
+        <item>http://v1.qzone.cc/avatar/201403/15/22/11/53245faf8a2ed399.jpg!200x200.jpg</item>
+        <item>http://www.qqbody.com/uploads/allimg/201411/18-200810_569.jpg</item>
+        <item>http://192.168.1.102/helpcommunity/user_icon/u2002015110417203.jpg</item>
 
     </string-array>
 

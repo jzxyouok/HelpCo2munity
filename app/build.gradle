@@ -53,6 +53,8 @@ dependencies {
     compile 'com.joanzapata.android:base-adapter-helper:1.1.10'    //万能适配器
 
     compile 'com.ms-square:expandableTextView:0.1.4'        //可扩展的TextView
+
+    compile 'com.facebook.fresco:fresco:0.8.1+'            //fresco图片加载处理
 }
 
 apt {

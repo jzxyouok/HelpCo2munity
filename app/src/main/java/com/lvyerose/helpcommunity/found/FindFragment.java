@@ -37,6 +37,7 @@ public class FindFragment extends BaseFragment {
         mList.add(new FriendDynamicFragment_());
         mList.add(new CommunityDynamicFragment_());
         mList.add(new PopularActivitiesFragment_());
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {

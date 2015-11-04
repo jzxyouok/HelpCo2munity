@@ -2,6 +2,8 @@ package com.lvyerose.helpcommunity.found;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ImageButton;
@@ -9,11 +11,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.joanzapata.android.BaseAdapterHelper;
 import com.joanzapata.android.QuickAdapter;
 import com.lvyerose.helpcommunity.R;
 import com.lvyerose.helpcommunity.base.BaseFragment;
-import com.mikepenz.materialdrawer.view.BezelImageView;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import org.androidannotations.annotations.AfterViews;
@@ -26,6 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+
+import static com.lvyerose.helpcommunity.R.id.id_item_userImg_sdwv;
 
 /**
  * author: lvyeRose
@@ -41,33 +45,33 @@ public class FriendDynamicFragment extends BaseFragment {
     String[] usernames;
     @StringArrayRes(R.array.datas_friends_city)
     String[] userCity;
-    int[] userIcon = new int[]{
-        R.drawable.user_01,
-        R.drawable.user_02,
-        R.drawable.user_03,
-        R.drawable.user_04,
-        R.drawable.user_05,
-        R.drawable.user_06,
-        R.drawable.user_07,
-        R.drawable.user_08,
-        R.drawable.user_09,
-        R.drawable.user_10,
-        R.drawable.user_11,
-        R.drawable.user_12,
-        R.drawable.user_13,
-        R.drawable.user_14,
-        R.drawable.user_16
-    };
+    @StringArrayRes(R.array.datas_user_icon)
+    String[] userIconUrl;
+
+    @StringArrayRes(R.array.datas_friends_message_add)
+    String[] contentsadd;
+    @StringArrayRes(R.array.datas_friends_userName_add)
+    String[] usernamesadd;
+    @StringArrayRes(R.array.datas_friends_city_add)
+    String[] userCityadd;
+    @StringArrayRes(R.array.datas_user_icon_add)
+    String[] userIconUrladd;
+
 
     SweetAlertDialog pDialog;
 
+    @ViewById(R.id.id_swipe_container)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     @ViewById(R.id.id_friend_lv)
     ListView mListView;
+    QuickAdapter<BeanFriendData> mAdapter;
+    List<BeanFriendData> mListData;
     private SparseBooleanArray mCollapsedStatus = new SparseBooleanArray();
 
 
     @AfterViews
-    void dailogs(){
+    void dailogs() {
         pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("Loading");
@@ -76,23 +80,53 @@ public class FriendDynamicFragment extends BaseFragment {
         cancelDailog();
     }
 
-    @UiThread(delay=3000)
-    void cancelDailog(){
-        if(pDialog != null){
+    @UiThread(delay = 3000)
+    void cancelDailog() {
+        if (pDialog != null) {
             pDialog.cancel();
         }
     }
 
+    @UiThread(delay = 2000)
+    void refreshFinsh() {
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.setRefreshing(false);
+            if (mListData != null && mListData.size() > 0) {
+//                mAdapter.addAll(addData());
+                mAdapter.replaceAll(addData());
+            }
+            Toast.makeText(getActivity(), "加载完成", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     @AfterViews
     void initData() {
 
-        mListView.setAdapter(new QuickAdapter<BeanFriendData>(getActivity(), R.layout.item_friend_dynamic, getDatas()) {
+        swipeRefreshLayout.setColorSchemeResources(
+                android.R.color.holo_blue_light,
+                android.R.color.holo_red_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_green_light);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // TODO Auto-generated method stub
+                refreshFinsh();
+            }
+        });
+
+        //listView设置适配器
+        mListView.setAdapter(mAdapter = new QuickAdapter<BeanFriendData>(getActivity(),
+                R.layout.item_friend_dynamic,
+                mListData = getDatas()) {
 
             @Override
             protected void convert(final BaseAdapterHelper helper, final BeanFriendData item) {
 
-                BezelImageView imageView = (BezelImageView) helper.getView().findViewById(R.id.id_item_userImg_bimv);
-                imageView.setImageResource(userIcon[helper.getPosition()]);
+                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) helper.getView().findViewById(id_item_userImg_sdwv);
+                simpleDraweeView.setImageURI(Uri.parse(item.getIcon()));
 
                 final TextView iconFavourTv = (TextView) helper.getView().findViewById(R.id.id_item_favour_tv);
                 TextView iconCommunityTv = (TextView) helper.getView().findViewById(R.id.id_item_community_tv);
@@ -102,7 +136,7 @@ public class FriendDynamicFragment extends BaseFragment {
                 iconCollectImbt.setSelected(item.isCollect());
 
                 iconFavourTv.setText(item.getFavour() + "");
-                iconCommunityTv.setText(item.getCommnunity()+"");
+                iconCommunityTv.setText(item.getCommnunity() + "");
 
                 setItemBottomIcon(iconFavourTv, R.drawable.item_favour_select);
                 setItemBottomIcon(iconCommunityTv, R.drawable.item_commnunity_select);
@@ -114,7 +148,7 @@ public class FriendDynamicFragment extends BaseFragment {
                             view.setSelected(false);
                             item.setIsFavour(false);
                             item.setFavour(item.getFavour() - 1);
-                            iconFavourTv.setText(item.getFavour()+"");
+                            iconFavourTv.setText(item.getFavour() + "");
                         } else {
                             view.setSelected(true);
                             item.setIsFavour(true);
@@ -126,7 +160,7 @@ public class FriendDynamicFragment extends BaseFragment {
                 iconCommunityTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getActivity() , "打开去评论几句" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "打开去评论几句", Toast.LENGTH_SHORT).show();
                     }
                 });
                 iconCollectImbt.setOnClickListener(new View.OnClickListener() {
@@ -158,7 +192,7 @@ public class FriendDynamicFragment extends BaseFragment {
     }
 
 
-    void setItemBottomIcon(TextView textView , int resId){
+    void setItemBottomIcon(TextView textView, int resId) {
 
         Drawable resDraw = getResources().getDrawable(resId);
         resDraw.setBounds(1, 1, 38, 38);
@@ -168,27 +202,44 @@ public class FriendDynamicFragment extends BaseFragment {
     }
 
 
-
-
-
     //模拟网络获取数据
     List<BeanFriendData> getDatas() {
         List<BeanFriendData> list = new ArrayList<>();
         for (int i = 0; i < contents.length; i++) {
             BeanFriendData bean = new BeanFriendData();
             bean.setId(i);
+            bean.setIcon(userIconUrl[i]);
             bean.setName(usernames[i]);
             bean.setAddress(userCity[i]);
-            bean.setTime("11/12 12:2" +  i);
+            bean.setTime("11/12 12:2" + i);
             bean.setContent(contents[i]);
             bean.setCommnunity(i * i + i * 4 + i);
             bean.setFavour(i * i * i + i * i);
-            if(i==6 || i==10){
+            if (i == 6 || i == 10) {
                 bean.setIsCollect(true);
                 bean.setIsFavour(true);
             }
             list.add(bean);
         }
+
+        return list;
+    }
+
+    List<BeanFriendData> addData() {
+        List<BeanFriendData> list = new ArrayList<>();
+        for (int i = 0; i < contentsadd.length; i++) {
+            BeanFriendData bean = new BeanFriendData();
+            bean.setId(i);
+            bean.setIcon(userIconUrladd[i]);
+            bean.setName(usernamesadd[i]);
+            bean.setAddress(userCityadd[i]);
+            bean.setTime("11/15 10:2" + i);
+            bean.setContent(contentsadd[i]);
+            bean.setCommnunity(i * i + i * 4 + i + 10);
+            bean.setFavour(i * i * i + i * i);
+            list.add(bean);
+        }
+        list.addAll(getDatas());
 
         return list;
     }

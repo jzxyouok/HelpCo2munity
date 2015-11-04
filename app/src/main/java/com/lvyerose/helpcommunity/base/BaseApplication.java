@@ -3,6 +3,7 @@ package com.lvyerose.helpcommunity.base;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.bugly.crashreport.CrashReport;
 
 /**
@@ -22,9 +23,13 @@ public class BaseApplication extends Application{
         super.onCreate();
         application = this;
         initCrashReport(this);
-
+        initFresco(this);
     }
 
+    private void initFresco(Context context){
+        Fresco.initialize(context);
+
+    }
     /**
      *  腾讯bug捕捉初始化
      * @param appContext
