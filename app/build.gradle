@@ -55,6 +55,10 @@ dependencies {
     compile 'com.ms-square:expandableTextView:0.1.4'        //可扩展的TextView
 
     compile 'com.facebook.fresco:fresco:0.8.1+'            //fresco图片加载处理
+
+    compile 'org.apmem.tools:layouts:1.10@aar'          //自动换行容器控件
+
+    compile 'com.bm.photoview:library:1.3.4'            //图片预览功能
 }
 
 apt {

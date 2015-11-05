@@ -1,132 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/main_ground_color"
-    android:fitsSystemWindows="true"
-    tools:context="com.lvyerose.sliding.MainActivity">
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/layout_top_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="match_parent"
-                android:src="@mipmap/icon_main_top_more"
-                android:scaleType="centerInside"
-                />
-            <com.mikepenz.materialdrawer.view.BezelImageView
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:src="@drawable/defult_user"
-                android:id="@+id/id_user_bimv"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:id="@+id/id_title_tv"/>
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_content_main"
+    <RelativeLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/id_foot_rgp"
-        android:layout_below="@+id/layout_top_main"
-        android:orientation="horizontal">
+        android:background="@color/main_ground_color"
+        android:fitsSystemWindows="true">
 
-    </LinearLayout>
 
-    <RadioGroup
-        android:id="@+id/id_foot_rgp"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/main_color_two"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/id_find_gb"
-            style="@style/RadioButton_setting"
-            android:checked="true"
-            android:text="发 现" />
-
-        <RadioButton
-            android:id="@+id/id_friend_gb"
-            style="@style/RadioButton_setting"
-            android:text="好 友" />
-
-        <RadioButton
-            android:id="@+id/id_add_gb"
-            style="@style/RadioButton_setting"
-            android:text="消 息" />
-
-        <RadioButton
-            android:id="@+id/id_message_gb"
-            style="@style/RadioButton_setting"
-            android:text="消 息" />
-
-        <RadioButton
-            android:id="@+id/id_helpping_gb"
-            style="@style/RadioButton_setting"
-            android:text="邦 邦"/>
-    </RadioGroup>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="0dp"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/layout_top_main"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/icon_main_top_more" />
+
+                <com.mikepenz.materialdrawer.view.BezelImageView
+                    android:id="@+id/id_user_bimv"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:src="@drawable/defult_user" />
+
+                <TextView
+                    android:id="@+id/id_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_content_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/id_foot_rgp"
+            android:layout_below="@+id/layout_top_main"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/id_foot_rgp"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/main_color_two"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/id_find_gb"
+                style="@style/RadioButton_setting"
+                android:checked="true"
+                android:text="发 现" />
+
+            <RadioButton
+                android:id="@+id/id_friend_gb"
+                style="@style/RadioButton_setting"
+                android:text="好 友" />
+
+            <RadioButton
+                android:id="@+id/id_add_gb"
+                style="@style/RadioButton_setting"
+                android:text="消 息" />
+
+            <RadioButton
+                android:id="@+id/id_message_gb"
+                style="@style/RadioButton_setting"
+                android:text="消 息" />
+
+            <RadioButton
+                android:id="@+id/id_helpping_gb"
+                style="@style/RadioButton_setting"
+                android:text="邦 邦" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/id_add_imv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:src="@drawable/foot_add_select" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/id_main_photo_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <ImageView
-            android:id="@+id/id_add_imv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null"
-            android:src="@drawable/foot_add_select" />
+            android:id="@+id/id_main_photo_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff000000" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+        <com.bm.library.PhotoView
+            android:id="@+id/id_main_photo_ptv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.bm.library.PhotoView>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-</RelativeLayout>
+    </FrameLayout>
+</FrameLayout>
 
 
 

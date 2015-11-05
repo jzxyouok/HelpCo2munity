@@ -1,5 +1,7 @@
 package com.lvyerose.helpcommunity.found;
 
+import java.util.List;
+
 /**
  * author: lvyeRose
  * objective:
@@ -19,6 +21,15 @@ public class BeanFriendData {
     private boolean isFavour;
     private int commnunity;
     private int favour;
+    private List<String> imageUrl;
+
+    public List<String> getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(List<String> imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public int getId() {
         return id;
