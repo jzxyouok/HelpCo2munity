@@ -8,11 +8,14 @@ package com.lvyerose.helpcommunity.common.network;
  */
 public class NetworkConst {
     /** 服务器地址*/
-    private static final String MAIN_ = "";
+    private static final String MAIN_ = "http://www.lvyerose.com/";
     /** 欢迎页广告图获取*/
     public static final String  WELLCOME_AD_= "";
     /** 判断是否直接登录*/
     public static final String IS_LOGIN_ = "";
+    /** 好友动态分页获取*/
+    public static final String GET_FRIEND_DEY = "";
+
 
 
 

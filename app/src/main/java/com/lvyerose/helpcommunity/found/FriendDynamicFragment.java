@@ -31,6 +31,7 @@ import org.androidannotations.annotations.res.StringArrayRes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -67,6 +68,29 @@ public class FriendDynamicFragment extends BaseFragment {
             R.drawable.user_03,
             R.drawable.user_04
     };
+    String [] urls = new String[]{
+//            "http://img2.3lian.com/2014/f4/166/70.jpg",
+//            "http://img2.3lian.com/2014/f4/166/70.jpg",
+//            "http://img2.3lian.com/2014/f4/166/70.jpg",
+//            "http://img2.3lian.com/2014/f4/166/70.jpg",
+//            "http://img2.3lian.com/2014/f4/166/70.jpg",
+//            "http://img2.3lian.com/2014/f4/166/70.jpg",
+//            "http://img2.3lian.com/2014/f4/166/70.jpg",
+//            "http://img2.3lian.com/2014/f4/166/70.jpg",
+//            "http://img2.3lian.com/2014/f4/166/70.jpg",
+//            "http://img2.3lian.com/2014/f4/166/70.jpg"
+//
+           "http://www.lvyerose.com/helpping/res/cach/03i58PICGda_1024.jpg",
+           "http://www.lvyerose.com/helpping/res/cach/31.jpg",
+           "http://www.lvyerose.com/helpping/res/cach/51k58PICU68.jpg",
+           "http://www.lvyerose.com/helpping/res/cach/70.jpg",
+           "http://www.lvyerose.com/helpping/res/cach/669913_112401044_2.jpg",
+           "http://www.lvyerose.com/helpping/res/cach/3219116_190202695111_2.jpg",
+           "http://www.lvyerose.com/helpping/res/cach/4653862_232742449000_2.jpg",
+           "http://www.lvyerose.com/helpping/res/cach/2008328205629575_2.jpg",
+           "http://www.lvyerose.com/helpping/res/cach/20131218134500022.jpg",
+           "http://www.lvyerose.com/helpping/res/cach/sy_201207262122036510.jpg",
+    };
 
 
     SweetAlertDialog pDialog;
@@ -80,8 +104,8 @@ public class FriendDynamicFragment extends BaseFragment {
     List<BeanFriendData> mListData;
     private SparseBooleanArray mCollapsedStatus = new SparseBooleanArray();
     /** 图片缩放功能 */
-    View mParent;
-    View mBg;
+//    View mParent;
+//    View mBg;
     PhotoView mPhotoView;
 
     AlphaAnimation in = new AlphaAnimation(0, 1);
@@ -121,10 +145,9 @@ public class FriendDynamicFragment extends BaseFragment {
         in.setDuration(300);
         out.setDuration(300);
 
-
-        mParent = getActivity().findViewById(R.id.id_main_photo_parent);
-        mBg = getActivity().findViewById(R.id.id_main_photo_bg);
-        mPhotoView = (PhotoView) getActivity().findViewById(R.id.id_main_photo_ptv);
+//        mParent = getActivity().findViewById(R.id.id_main_photo_parent);
+//        mBg = getActivity().findViewById(R.id.id_main_photo_bg);
+//        mPhotoView = (PhotoView) getActivity().findViewById(R.id.id_main_photo_ptv);
     }
     @AfterViews
     void initData() {
@@ -149,67 +172,74 @@ public class FriendDynamicFragment extends BaseFragment {
 
             @Override
             protected void convert(final BaseAdapterHelper helper, final BeanFriendData item) {
+                //动态类型为图文的话执行如下图片列表
                 if (item.getType() != null && item.getType().equals("TYPE_IMG")) {
                     GridView grv = (GridView) helper.getView().findViewById(R.id.id_item_imgs_gdv);
                     grv.setVisibility(View.VISIBLE);
+                    //GridView的每个Item的点击事件设置...
                     grv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                            PhotoView p = (PhotoView) view;
-                            Info mInfo = p.getInfo();
-                            HolderInfo holderInfo = new HolderInfo();
-                            mPhotoView.setImageResource(url[position]);
-                            mBg.startAnimation(in);
-                            mParent.setVisibility(View.VISIBLE);
-                            mPhotoView.animaFrom(mInfo);
-                            holderInfo.mInfo = mInfo;
-                            holderInfo.mPhotoView = p;
-                            p.setVisibility(View.GONE);
-                            mPhotoView.setTag(holderInfo);
-
+//                            PhotoView p = (PhotoView) view;
+//                            Info mInfo = p.getInfo();
+//                            HolderInfo holderInfo = new HolderInfo();
+//                            String urlItem = adapterView.getAdapter().getItem(position).toString();
+//                            OkHttpClientManager.getDisplayImageDelegate().displayImage(mPhotoView,
+//                                    urlItem);
+////                            mPhotoView.setImageResource(url[position]);
+//                            mBg.startAnimation(in);
+//                            mParent.setVisibility(View.VISIBLE);
+//                            mPhotoView.animaFrom(mInfo);
+//                            holderInfo.mInfo = mInfo;
+//                            holderInfo.mPhotoView = p;
+//                            p.setVisibility(View.GONE);
+//                            mPhotoView.setTag(holderInfo);
+//
 
                         }
                     });
+
+                    //设置每个item的GridView适配器
                     grv.setAdapter(new QuickAdapter<String>(getActivity(),
                             R.layout.item_dynamic_gridview,
                             item.getImageUrl()) {
                         @Override
                         protected void convert(BaseAdapterHelper helper, String item) {
-                            final PhotoView photoView = (PhotoView) helper.getView().findViewById(R.id.id_item_grdview_ptv);
-                            photoView.setImageResource(url[helper.getPosition()]);
-                            mPhotoView.enable();
-                            mPhotoView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    HolderInfo holderInfo = (HolderInfo) v.getTag();
-                                    mBg.startAnimation(out);
-                                    if(holderInfo != null){
-                                        Info mInfo = holderInfo.mInfo;
-                                        final PhotoView mView = holderInfo.mPhotoView;
-                                        if(mInfo!=null){
-                                            mParent.setAnimation(out);
-                                            mView.setAnimation(in);
-                                            mPhotoView.animaTo(mInfo, new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    mParent.setVisibility(View.GONE);
-                                                    mView.setVisibility(View.VISIBLE);
-                                                }
-                                            });
-                                        }else{
-                                            mParent.setVisibility(View.GONE);
-                                        }
-                                    }
 
-                                }
-                            });
+                            //GridView的每个Item的内容设置，并且设置好Info点击动画
+                            final SimpleDraweeView photoView = (SimpleDraweeView) helper.getView().findViewById(R.id.id_item_grdview_ptv);
+//                            OkHttpClientManager.getDisplayImageDelegate().displayImage(photoView,
+//                                    item);
+                            photoView.setImageURI(Uri.parse(item));
+//                            photoView.setImageResource(url[helper.getPosition()]);
+//                            mPhotoView.enable();
+//                            mPhotoView.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    HolderInfo holderInfo = (HolderInfo) v.getTag();
+//                                    mBg.startAnimation(out);
+//                                    if(holderInfo != null){
+//                                        Info mInfo = holderInfo.mInfo;
+//                                        final PhotoView mView = holderInfo.mPhotoView;
+//                                        if(mInfo!=null){
+//                                            mPhotoView.animaTo(mInfo, new Runnable() {
+//                                                @Override
+//                                                public void run() {
+//                                                    mParent.setVisibility(View.GONE);
+//                                                    mView.setVisibility(View.VISIBLE);
+//                                                }
+//                                            });
+//                                        }
+//                                    }
+//                                }
+//                            });
                         }
-
                     });
                 } else {
                     helper.getView().findViewById(R.id.id_item_imgs_gdv).setVisibility(View.GONE);
                 }
 
+                //图文动态和纯文本动态 的公用数据设置
                 SimpleDraweeView simpleDraweeView = (SimpleDraweeView) helper.getView().findViewById(id_item_userImg_sdwv);
                 simpleDraweeView.setImageURI(Uri.parse(item.getIcon()));
 
@@ -318,7 +348,8 @@ public class FriendDynamicFragment extends BaseFragment {
             bean.setType("TYPE_IMG");
             List<String> listUrl = new ArrayList<>();
             for (int j = 0; j < 4; j++) {
-                listUrl.add("");
+                Random random = new Random();
+                listUrl.add(urls[random.nextInt(10)]);
             }
             bean.setImageUrl(listUrl);
             bean.setIcon(userIconUrladd[i]);
@@ -336,6 +367,9 @@ public class FriendDynamicFragment extends BaseFragment {
     }
 
 
+    /**
+     * gridView的每个Item点击弹出时候说需数据结构化
+     */
     class HolderInfo{
         PhotoView mPhotoView;
         Info mInfo;

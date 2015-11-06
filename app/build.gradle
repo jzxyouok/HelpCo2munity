@@ -56,9 +56,13 @@ dependencies {
 
     compile 'com.facebook.fresco:fresco:0.8.1+'            //fresco图片加载处理
 
+    compile 'com.squareup.okhttp:okhttp:2.5.0'             //网络请求 okHttp
+
     compile 'org.apmem.tools:layouts:1.10@aar'          //自动换行容器控件
 
     compile 'com.bm.photoview:library:1.3.4'            //图片预览功能
+
+    compile 'com.google.code.gson:gson:2.4'             //gson解析
 }
 
 apt {

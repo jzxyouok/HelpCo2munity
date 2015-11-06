@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.bm.library.PhotoView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<com.bm.library.PhotoView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:id="@+id/id_item_grdview_ptv"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="92dp"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@drawable/defult_user" />-->
+<com.facebook.drawee.view.SimpleDraweeView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:id="@+id/id_item_grdview_ptv"
-    android:layout_width="match_parent"
-    android:layout_height="92dp"
-    android:scaleType="fitXY"
-    android:src="@drawable/defult_user" />
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:layout_centerInParent="true"
+    fresco:placeholderImage="@mipmap/icon_placeholder"
+    fresco:placeholderImageScaleType="focusCrop"
+    >
+
+</com.facebook.drawee.view.SimpleDraweeView>
+
+
