@@ -5,22 +5,25 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.SparseBooleanArray;
+import android.view.Display;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bm.library.Info;
-import com.bm.library.PhotoView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.joanzapata.android.BaseAdapterHelper;
 import com.joanzapata.android.QuickAdapter;
 import com.lvyerose.helpcommunity.R;
 import com.lvyerose.helpcommunity.base.BaseFragment;
+import com.lvyerose.helpcommunity.utils.MethodUtils;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import org.androidannotations.annotations.AfterViews;
@@ -104,10 +107,8 @@ public class FriendDynamicFragment extends BaseFragment {
     List<BeanFriendData> mListData;
     private SparseBooleanArray mCollapsedStatus = new SparseBooleanArray();
     /** 图片缩放功能 */
-//    View mParent;
-//    View mBg;
-    PhotoView mPhotoView;
-
+    RelativeLayout mainPhotoRela;
+    String toUrl;
     AlphaAnimation in = new AlphaAnimation(0, 1);
     AlphaAnimation out = new AlphaAnimation(1, 0);
 
@@ -145,12 +146,16 @@ public class FriendDynamicFragment extends BaseFragment {
         in.setDuration(300);
         out.setDuration(300);
 
-//        mParent = getActivity().findViewById(R.id.id_main_photo_parent);
-//        mBg = getActivity().findViewById(R.id.id_main_photo_bg);
-//        mPhotoView = (PhotoView) getActivity().findViewById(R.id.id_main_photo_ptv);
     }
     @AfterViews
     void initData() {
+        mainPhotoRela = (RelativeLayout) getActivity().findViewById(R.id.id_main_photo_parent);
+        mainPhotoRela.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animOut((View)mainPhotoRela.getTag() , view);
+            }
+        });
         swipeRefreshLayout.setColorSchemeResources(
                 android.R.color.holo_blue_light,
                 android.R.color.holo_red_light,
@@ -180,6 +185,9 @@ public class FriendDynamicFragment extends BaseFragment {
                     grv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                            mainPhotoRela.setTag(view);
+                            toUrl = (String)adapterView.getAdapter().getItem(position);
+                            animIn(view, mainPhotoRela);
 //                            PhotoView p = (PhotoView) view;
 //                            Info mInfo = p.getInfo();
 //                            HolderInfo holderInfo = new HolderInfo();
@@ -207,10 +215,11 @@ public class FriendDynamicFragment extends BaseFragment {
                         protected void convert(BaseAdapterHelper helper, String item) {
 
                             //GridView的每个Item的内容设置，并且设置好Info点击动画
-                            final SimpleDraweeView photoView = (SimpleDraweeView) helper.getView().findViewById(R.id.id_item_grdview_ptv);
+                            final SimpleDraweeView simpleDraweeView = (SimpleDraweeView) helper.getView().findViewById(R.id.id_item_grdview_ptv);
 //                            OkHttpClientManager.getDisplayImageDelegate().displayImage(photoView,
 //                                    item);
-                            photoView.setImageURI(Uri.parse(item));
+                            simpleDraweeView.setImageURI(Uri.parse(item));
+//                            simpleDraweeView.setTag(item);
 //                            photoView.setImageResource(url[helper.getPosition()]);
 //                            mPhotoView.enable();
 //                            mPhotoView.setOnClickListener(new View.OnClickListener() {
@@ -371,8 +380,70 @@ public class FriendDynamicFragment extends BaseFragment {
      * gridView的每个Item点击弹出时候说需数据结构化
      */
     class HolderInfo{
-        PhotoView mPhotoView;
-        Info mInfo;
+        View view;
+
+    }
+
+    void animIn(View view1, View view2) {
+        view2.setVisibility(View.VISIBLE);
+        view2.setClickable(true);
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view2.findViewById(R.id.id_main_photo_sdv);
+        simpleDraweeView.setImageURI(Uri.parse(toUrl));
+
+        int [] xy = new int[2];
+        view1.getLocationOnScreen(xy);
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        float x = ((float)xy[0]+(float)view1.getWidth()/2)/getView().getWidth();
+        float y = ((float)xy[1]- MethodUtils.getStatusBarHeight(getActivity())+(float)view1.getHeight()/2)/display.getHeight();
+        view2.setVisibility(View.VISIBLE);
+        final ScaleAnimation animation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
+                Animation.RELATIVE_TO_SELF, x, Animation.RELATIVE_TO_SELF, y);
+        animation.setDuration(300);//设置动画持续时间
+        /** 常用方法 */
+        //animation.setRepeatCount(int repeatCount);//设置重复次数
+        //animation.setFillAfter(boolean);//动画执行完后是否停留在执行完的状态
+        //animation.setStartOffset(long startOffset);//执行前的等待时间
+        view2.clearAnimation();
+        view2.setAnimation(animation);
+        /** 开始动画 */
+        animation.startNow();
+    }
+
+    void animOut(View view1, final View view2) {
+        int [] xy = new int[2];
+        view1.getLocationOnScreen(xy);
+        float x = ((float)xy[0]+(float)view1.getWidth()/2)/getView().getWidth();
+        float y = ((float)xy[1]-MethodUtils.getStatusBarHeight(getActivity())+(float)view1.getHeight()/2)/ MethodUtils.getActivityHgOrWd(getActivity() , MethodUtils.ACTIVITY_HEIGHT);
+//        view2.setVisibility(View.VISIBLE);
+        final ScaleAnimation animation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f,
+                Animation.RELATIVE_TO_SELF, x, Animation.RELATIVE_TO_SELF, y);
+        animation.setDuration(500);//设置动画持续时间
+        /** 常用方法 */
+        //animation.setRepeatCount(int repeatCount);//设置重复次数
+        animation.setFillAfter(true);//动画执行完后是否停留在执行完的状态
+        //animation.setStartOffset(long startOffset);//执行前的等待时间
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                view2.setVisibility(View.GONE);
+                view2.setClickable(false);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        view2.clearAnimation();
+        view2.setAnimation(animation);
+        /** 开始动画 */
+        animation.startNow();
+
 
     }
 

@@ -7,7 +7,7 @@
     <!--android:src="@drawable/defult_user" />-->
 <com.facebook.drawee.view.SimpleDraweeView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="htt p://schemas.android.com/apk/res-auto"
     android:id="@+id/id_item_grdview_ptv"
     android:layout_width="100dp"
     android:layout_height="100dp"
