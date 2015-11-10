@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context="layout.MessageFragment">
 
     <TextView
@@ -20,16 +21,6 @@
         android:layout_height="20dp"
         fresco:placeholderImage="@drawable/defult_user"
         />
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="68dp"
-        android:layout_marginTop="148dp"
-        android:src="@drawable/user_01"
-        android:id="@+id/img_1"
-        />
-
 
 
 </RelativeLayout>

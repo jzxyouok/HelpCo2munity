@@ -3,6 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lvyerose.helpcommunity">
 
+    <!-- 联网权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 腾讯Bug捕捉权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -14,10 +23,7 @@
         <activity
             android:name=".main.MainActivity_"
             android:label="@string/app_name"
-            android:theme="@style/Main_Style"
-            >
-
-        </activity>
+            android:theme="@style/Main_Style"></activity>
         <activity
             android:name=".wellcome.WellComeActivity_"
             android:theme="@style/ActivityWellComeTheme">
@@ -27,19 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".login.LoginActivity_">
 
-
-
-
-
+        </activity>
     </application>
 
-    <!-- 联网权限 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-    <!-- 腾讯Bug捕捉权限 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
 </manifest>

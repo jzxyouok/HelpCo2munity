@@ -3,14 +3,17 @@ package com.lvyerose.helpcommunity.wellcome;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.lvyerose.helpcommunity.R;
+import com.lvyerose.helpcommunity.base.Const;
+import com.lvyerose.helpcommunity.login.LoginActivity_;
 import com.lvyerose.helpcommunity.main.MainActivity_;
+import com.lvyerose.helpcommunity.utils.ACache;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
@@ -136,8 +139,6 @@ public class WellComeActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-
             }
         }
     }
@@ -149,7 +150,14 @@ public class WellComeActivity extends AppCompatActivity {
 
     @UiThread
     void jumpActivity() {        //页面自动跳转
-        startActivity(new Intent(this, MainActivity_.class));
+
+        ACache mCache = ACache.get(this , Const.ACACHE_NAME);
+        String value = mCache.getAsString(Const.ACACHE_USER_ID);
+        if(TextUtils.isEmpty(value)){
+            LoginActivity_.intent(this).start();
+        }else{
+            MainActivity_.intent(this).start();
+        }
         overridePendingTransition(R.anim.wellcome_alpha_in, R.anim.wellcome_alpha_in);
         finish();
         overridePendingTransition(R.anim.wellcome_alpha_in, R.anim.wellcome_alpha_out);// 淡出淡入动画效果

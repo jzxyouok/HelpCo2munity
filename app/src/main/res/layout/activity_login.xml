@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/main_base_background"
+    android:gravity="center_horizontal"
+    android:paddingLeft="48dp"
+    android:paddingRight="48dp">
+
+    <ImageView
+        android:id="@+id/id_login_top_imv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/icon_login_top" />
+
+    <EditText
+        android:id="@+id/id_login_username_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_login_top_imv"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/login_edittext_bg_select"
+        android:gravity="center_vertical"
+        android:textColor="@drawable/login_edittext_text_select"
+        android:hint="user...name"
+        android:padding="12dp"
+        android:inputType="number"
+        android:maxLength="11"
+        android:maxLines="1"
+        android:textColorHint="#e3cecdcd" />
+
+    <EditText
+        android:id="@+id/id_login_password_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_login_username_edt"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/login_edittext_bg_select"
+        android:gravity="center_vertical"
+        android:hint="pass...word"
+        android:textColor="@drawable/login_edittext_text_select"
+        android:padding="12dp"
+        android:maxLines="1"
+        android:maxLength="18"
+        android:textColorHint="#e3cecdcd" />
+
+
+</RelativeLayout>

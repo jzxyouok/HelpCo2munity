@@ -188,21 +188,6 @@ public class FriendDynamicFragment extends BaseFragment {
                             mainPhotoRela.setTag(view);
                             toUrl = (String)adapterView.getAdapter().getItem(position);
                             animIn(view, mainPhotoRela);
-//                            PhotoView p = (PhotoView) view;
-//                            Info mInfo = p.getInfo();
-//                            HolderInfo holderInfo = new HolderInfo();
-//                            String urlItem = adapterView.getAdapter().getItem(position).toString();
-//                            OkHttpClientManager.getDisplayImageDelegate().displayImage(mPhotoView,
-//                                    urlItem);
-////                            mPhotoView.setImageResource(url[position]);
-//                            mBg.startAnimation(in);
-//                            mParent.setVisibility(View.VISIBLE);
-//                            mPhotoView.animaFrom(mInfo);
-//                            holderInfo.mInfo = mInfo;
-//                            holderInfo.mPhotoView = p;
-//                            p.setVisibility(View.GONE);
-//                            mPhotoView.setTag(holderInfo);
-//
 
                         }
                     });
