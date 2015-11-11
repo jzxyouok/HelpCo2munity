@@ -8,7 +8,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@color/main_color_two"
         android:text="热门活动"
         android:layout_gravity="center"
         android:gravity="center"

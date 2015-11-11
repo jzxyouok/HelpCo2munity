@@ -15,18 +15,14 @@
     <!-- 主页侧滑菜单样式设置 -->
     <style name="Main_Style" parent="MaterialDrawerTheme.TranslucentStatus">
         <!-- ...and here we setting appcompat’s color theme attrs -->
-        <item name="colorPrimary">@color/main_color_one</item>
-        <item name="colorPrimaryDark">@color/main_color_two</item>
-        <item name="colorAccent">#02A8F3</item>
-
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <!-- MaterialDrawer specific values -->
-
         <item name="material_drawer_background">@color/material_drawer_dark_background</item>
         <item name="material_drawer_primary_text">@color/md_dark_secondary</item>
         <item name="material_drawer_secondary_text">@color/material_drawer_dark_secondary_text
         </item>
-
-
         <item name="material_drawer_hint_text">@color/material_drawer_dark_hint_text</item>
         <item name="material_drawer_divider">@color/material_drawer_dark_divider</item>
         <item name="material_drawer_selected">@color/material_drawer_dark_selected</item>
@@ -34,10 +30,11 @@
         <item name="material_drawer_header_selection_text">
             @color/material_drawer_dark_primary_text
         </item>
-
         <!-- CAB :D -->
         <item name="windowActionModeOverlay">true</item>
     </style>
+
+
 
     <!-- 欢迎界面主题 -->
     <style name="ActivityWellComeTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -45,6 +42,14 @@
         <item name="colorPrimary">@color/wellCome_background</item>
         <item name="colorPrimaryDark">@color/wellCome_background</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="Login_Register_AppThem" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/login_register_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/login_register_colorPrimaryDark</item>
+        <item name="colorAccent">@color/login_register_colorAccent</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -9,7 +9,7 @@
         android:topLeftRadius="8dp"
         android:topRightRadius="8dp" />
 
-    <solid android:color="#1a000000" />
+    <solid android:color="@color/editText_bg_color" />
     <!-- 描边
         虚线属性
      android:dashGap="4dp"
@@ -17,6 +17,6 @@
      -->
     <stroke
         android:width="2dp"
-        android:color="#3834475e" />
+        android:color="@color/editText_bg_stroke_fl_color" />
 
 </shape>  

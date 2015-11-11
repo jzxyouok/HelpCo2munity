@@ -114,7 +114,13 @@ public class FriendDynamicFragment extends BaseFragment {
 
 
     @AfterViews
-    void dailogs() {
+    void initViews(){
+        dailogs();
+        initZoom();
+        initData();
+    }
+
+    private void dailogs() {
         pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("Loading");
@@ -141,14 +147,13 @@ public class FriendDynamicFragment extends BaseFragment {
         }
     }
 
-    @AfterViews
-    void initZoom(){
+   private void initZoom(){
         in.setDuration(300);
         out.setDuration(300);
 
     }
-    @AfterViews
-    void initData() {
+
+    private void initData() {
         mainPhotoRela = (RelativeLayout) getActivity().findViewById(R.id.id_main_photo_parent);
         mainPhotoRela.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -361,15 +366,8 @@ public class FriendDynamicFragment extends BaseFragment {
     }
 
 
-    /**
-     * gridView的每个Item点击弹出时候说需数据结构化
-     */
-    class HolderInfo{
-        View view;
 
-    }
-
-    void animIn(View view1, View view2) {
+    private void animIn(View view1, View view2) {
         view2.setVisibility(View.VISIBLE);
         view2.setClickable(true);
         SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view2.findViewById(R.id.id_main_photo_sdv);
@@ -394,7 +392,7 @@ public class FriendDynamicFragment extends BaseFragment {
         animation.startNow();
     }
 
-    void animOut(View view1, final View view2) {
+    private void animOut(View view1, final View view2) {
         int [] xy = new int[2];
         view1.getLocationOnScreen(xy);
         float x = ((float)xy[0]+(float)view1.getWidth()/2)/getView().getWidth();

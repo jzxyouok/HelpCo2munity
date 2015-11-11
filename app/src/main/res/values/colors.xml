@@ -1,21 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#4FBCCB</color>
+    <color name="colorPrimaryDark">#44b5c4</color>
+    <color name="colorAccent">#02A8F3</color>
 
-
-
-    <color name="main_pressed_text">#9C58B6</color>
-
-    <color name="main_base_background" >#13BABA</color>
+    <!-- WellCome color-->
     <color name="wellCome_background" >#13BABA</color>
-    <color name="main_color_one" >#4FBCCB</color>
-    <color name="main_color_two" >#44b5c4</color>
-
+    <!-- main color-->
+    <color name="main_gridView_bg_color">#44b5c4</color>
     <color name="main_ground_color" >#F0F0F2</color>
     <color name="title_text_color" >#F4F4F4</color>
     <color name="foot_text_color" >#E3E3E3</color>
-
     <color name="find_top_text">#0DDCFF</color>
+    <color name="main_pressed_text">#9C58B6</color>
+    <color name="main_base_background" >#13BABA</color>
+    <!-- login color-->
+    <color name="login_register_colorPrimary">#13BABA</color>
+    <color name="login_register_colorPrimaryDark">#13BABA</color>
+    <color name="login_register_colorAccent">#13BABA</color>
+    <color name="login_register_background">#13BABA</color>
+    <color name="editText_hint_color">#e3cecdcd</color>
+    <color name="editText_text_normal_color">#ff808080</color>
+    <color name="editText_text_foc_color">#9C58B6</color>
+    <color name="editText_bg_color">#1a000000</color>
+    <color name="editText_bg_stroke_il_color">#34475E</color>
+    <color name="editText_bg_stroke_fl_color">#3834475e</color>
+    <color name="login_shape_bg_color">#30000000</color>
+    <color name="register_shape_bg_color">#4E6274</color>
+    <color name="login_text_color">#F4F4F4</color>
+
+    <!-- friendDynamic color-->
+    <color name="item_username_color">#7e81d9</color>
+    <color name="item_address_color">#ff808080</color>
+    <color name="item_times_color">#8183be</color>
+    <color name="item_divider_color">#66808080</color>
+    <color name="item_divider_v_color">#88808080</color>
+    <color name="item_content_text_color">#666666</color>
+    <color name="item_bottom_text_color">#ff808080</color>
+
 </resources>
