@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/login_register_background"
+    android:gravity="center_horizontal"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp">
+
+    <com.mikepenz.materialdrawer.view.BezelImageView
+        android:id="@+id/id_register_top_bzimv"
+        android:layout_width="86dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="22dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/icon_add_userpics"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/top_hint_text"
+        android:textColor="@color/top_hint_text_color"
+        android:layout_below="@+id/id_register_top_bzimv"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:id="@+id/id_top_hint_tv"
+        />
+    <EditText
+        android:id="@+id/id_register_username_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_top_hint_tv"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/login_edittext_bg_select"
+        android:gravity="center_vertical"
+        android:textColor="@drawable/login_edittext_text_select"
+        android:hint="@string/register_user_name_hint_text"
+        android:padding="12dp"
+        android:textSize="14sp"
+        android:inputType="number"
+        android:maxLength="11"
+        android:maxLines="1"
+        android:textColorHint="@color/editText_hint_color" />
+
+    <EditText
+        android:id="@+id/id_register_code_edt"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_register_username_edt"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/login_edittext_bg_select"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:textColor="@drawable/login_edittext_text_select"
+        android:hint="@string/register_user_code_hint_text"
+        android:padding="12dp"
+        android:inputType="number"
+        android:maxLength="6"
+        android:maxLines="1"
+        android:textColorHint="@color/editText_hint_color" />
+
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/id_register_code_edt"
+        android:layout_alignBottom="@+id/id_register_code_edt"
+        android:layout_toRightOf="@+id/id_register_code_edt"
+        android:layout_marginLeft="12dp"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:background="@drawable/regist_sendcode_bg_select"
+        android:textColor="@drawable/regist_sendcode_text_select"
+        android:text="@string/register_send_code_text"
+        android:id="@+id/id_register_sendCode_btn"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/id_register_sendCode_btn"
+        android:layout_alignBottom="@+id/id_register_sendCode_btn"
+        android:layout_toRightOf="@+id/id_register_sendCode_btn"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal"
+        android:id="@+id/id_register_sex_rgp">
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:paddingRight="8dp"
+            android:button="@null"
+            />
+
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:paddingRight="8dp"
+            android:button="@null"
+            />
+
+    </RadioGroup>
+    <EditText
+        android:id="@+id/id_register_password_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_register_code_edt"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/login_edittext_bg_select"
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:hint="@string/register_password_hint_text"
+        android:textColor="@drawable/login_edittext_text_select"
+        android:padding="12dp"
+        android:maxLines="1"
+        android:maxLength="18"
+        android:textColorHint="@color/editText_hint_color" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_register_password_edt"
+        android:layout_marginTop="36dp"
+        android:id="@+id/id_button_liearlt"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:layout_height="wrap_content"
+            android:textColor="@color/login_text_color"
+            android:background="@drawable/login_button_bg"
+            android:layout_marginRight="6dp"
+            android:text="@string/login_button_text"
+            android:id="@+id/id_register_login_btn"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:textColor="@color/login_text_color"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/register_button_bg"
+            android:text="@string/register_button_text"
+            android:id="@+id/id_register_register_btn"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="12dp"
+        android:layout_alignLeft="@+id/id_login_forgot_tv"
+        android:layout_alignRight="@+id/id_login_forgot_tv"
+        android:layout_above="@+id/id_login_forgot_tv"
+        android:background="#ffffff"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更多详细资料请移步个人中心"
+        android:textColor="#ffffff"
+        android:layout_centerHorizontal="true"
+        android:textSize="14sp"
+        android:padding="6dp"
+        android:id="@+id/id_login_forgot_tv"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        />
+
+
+</RelativeLayout>

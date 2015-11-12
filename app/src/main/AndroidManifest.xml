@@ -23,9 +23,8 @@
         <activity
             android:name=".main.MainActivity_"
             android:label="@string/app_name"
-            android:theme="@style/Main_Style">
+            android:theme="@style/Main_Style" />
 
-        </activity>
         <activity
             android:name=".wellcome.WellComeActivity_"
             android:theme="@style/ActivityWellComeTheme">
@@ -35,9 +34,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity_"
-            android:theme="@style/Login_Register_AppThem">
-        </activity>
+        <activity
+            android:name=".login.LoginActivity_"
+            android:theme="@style/Login_Register_AppThem" />
+        <activity
+            android:name=".login.RegisterActivity_"
+            android:theme="@style/Login_Register_AppThem" />
     </application>
 
 </manifest>

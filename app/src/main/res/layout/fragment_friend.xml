@@ -10,7 +10,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:textColor="@color/md_blue_400"
-
         android:text="好友界面" />
 
 </FrameLayout>
