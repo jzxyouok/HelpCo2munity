@@ -18,6 +18,7 @@ import com.lvyerose.helpcommunity.found.FindFragment_;
 import com.lvyerose.helpcommunity.helping.HelppingFragment_;
 import com.lvyerose.helpcommunity.im.FriendFragment_;
 import com.lvyerose.helpcommunity.im.MessageFragment_;
+import com.lvyerose.helpcommunity.login.UserInfoBean;
 import com.mikepenz.crossfadedrawerlayout.view.CrossfadeDrawerLayout;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -38,8 +39,10 @@ import com.mikepenz.materialize.util.UIUtils;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringArrayRes;
+import org.simple.eventbus.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +57,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  */
 @EActivity(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
+    @Extra("user_info")
+    UserInfoBean user_info;
     //底部导航
     private AccountHeader headerResult = null;
     private Drawer result = null;
@@ -87,6 +92,8 @@ public class MainActivity extends BaseActivity {
         toolbar.setTitle("");
         mTitle.setText(titles[0]);
         setSupportActionBar(toolbar);
+//        EventBus.getDefault().register(this);
+        updateUserWithTag(user_info);
         initDrawer(toolbar);
         initRadioButtonIcon();
     }
@@ -261,6 +268,14 @@ public class MainActivity extends BaseActivity {
     @Click(R.id.id_add_imv)
     void addImvClicked() {
         Toast.makeText(getApplicationContext(), "Add", Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Subscriber(tag = "login_and_register")
+    private void updateUserWithTag(UserInfoBean user) {
+        if(user!=null && user.getData()!=null){
+            Toast.makeText(this , user.getData().getUser_phone()+"--"+user.getData().getUser_icon() , Toast.LENGTH_LONG).show();
+        }
     }
 
 }

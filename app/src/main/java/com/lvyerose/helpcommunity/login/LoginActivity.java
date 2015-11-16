@@ -8,12 +8,14 @@ import android.widget.Toast;
 
 import com.lvyerose.helpcommunity.R;
 import com.lvyerose.helpcommunity.base.BaseActivity;
+import com.lvyerose.helpcommunity.common.network.NetworkServer;
 import com.lvyerose.helpcommunity.main.MainActivity_;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.callback.ResultCallback;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -43,17 +45,26 @@ public class LoginActivity extends BaseActivity {
         passWordEdt.setCompoundDrawables(null, null, myImage, null);
     }
 
-    @UiThread(delay = 3000)
-    void testLogin(String username, String password) {
-        if (username.equals("18311321513") && password.equals("120407yyt")) {
-            cancelDialog();
-            Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
-            MainActivity_.intent(this).start();
-            this.finish();
-        }else{
-            cancelDialog();
-            Toast.makeText(this, "账号或密码不匹配", Toast.LENGTH_SHORT).show();
-        }
+    private void netWorkLogin(String username, String password) {
+        dialogs();
+        NetworkServer.toLogin(username , password , new ResultCallback<UserInfoBean>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                cancelDialog();
+            }
+
+            @Override
+            public void onResponse(UserInfoBean userInfoBean) {
+                cancelDialog();
+                Toast.makeText(LoginActivity.this, userInfoBean.getMessage(), Toast.LENGTH_LONG).show();
+                if (userInfoBean != null && "success".equals(userInfoBean.getStatus())) {
+                    MainActivity_.intent(LoginActivity.this).user_info(userInfoBean).start();
+//                            EventBus.getDefault().post(userInfoBean, "login_and_register");
+                    finish();
+                }
+            }
+        });
+
     }
 
     @Click(R.id.id_login_login_btn)
@@ -67,14 +78,12 @@ public class LoginActivity extends BaseActivity {
             Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-        dialogs();
-        testLogin(userName , password);
+        netWorkLogin(userName, password);
 
     }
 
     @Click(R.id.id_login_register_btn)
     void onRegister() {
-        Toast.makeText(this, "注册去...", Toast.LENGTH_SHORT).show();
         RegisterActivity_.intent(this).start();
         finish();
 
@@ -83,7 +92,6 @@ public class LoginActivity extends BaseActivity {
     @Click(R.id.id_login_forgot_tv)
     void onForgot() {
         Toast.makeText(this, "忘记密码就算了吧...", Toast.LENGTH_SHORT).show();
-
     }
 
 
