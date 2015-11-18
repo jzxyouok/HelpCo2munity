@@ -6,6 +6,8 @@ import android.content.Context;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.bugly.crashreport.CrashReport;
 
+import io.rong.imkit.RongIM;
+
 /**
  * author: lvyeRose
  * objective: 基础进程类
@@ -24,6 +26,7 @@ public class BaseApplication extends Application{
         application = this;
         initCrashReport(this);
         initFresco(this);
+        initRongIM();
     }
 
     private void initFresco(Context context){
@@ -36,5 +39,9 @@ public class BaseApplication extends Application{
      */
     public void initCrashReport(Context appContext){
         CrashReport.initCrashReport(appContext, "900011750", false);
+    }
+
+    private void initRongIM(){
+        RongIM.init(this);
     }
 }

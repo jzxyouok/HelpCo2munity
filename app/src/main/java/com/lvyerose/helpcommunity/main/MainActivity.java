@@ -1,6 +1,7 @@
 package com.lvyerose.helpcommunity.main;
 
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.lvyerose.helpcommunity.R;
 import com.lvyerose.helpcommunity.base.BaseActivity;
 import com.lvyerose.helpcommunity.base.FragmentControl;
@@ -33,7 +35,6 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.mikepenz.materialdrawer.util.DrawerUIUtils;
-import com.mikepenz.materialdrawer.view.BezelImageView;
 import com.mikepenz.materialize.util.UIUtils;
 
 import org.androidannotations.annotations.AfterViews;
@@ -42,12 +43,13 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringArrayRes;
-import org.simple.eventbus.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 
 /**
  * author: lvyeRose
@@ -82,20 +84,21 @@ public class MainActivity extends BaseActivity {
 
     @StringArrayRes(R.array.main_title_arrays)
     String[] titles;
-    @ViewById(R.id.id_user_bimv)
-    BezelImageView userIcon_bimv;
+    @ViewById(R.id.id_user_sdvw)
+    SimpleDraweeView userIcon_sdvw;
+    IProfile profile;       //侧滑菜单头部控制器
 
 
     @AfterViews
     void init() {
+        connectIM();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
         mTitle.setText(titles[0]);
         setSupportActionBar(toolbar);
-//        EventBus.getDefault().register(this);
-        updateUserWithTag(user_info);
-        initDrawer(toolbar);
+        initDrawer();
         initRadioButtonIcon();
+        updateUserInfo(user_info);
     }
 
     @AfterViews
@@ -131,12 +134,10 @@ public class MainActivity extends BaseActivity {
 
     /**
      * 初始化侧滑菜单
-     *
-     * @param toolbar
      */
-    void initDrawer(Toolbar toolbar) {
-        final IProfile profile = new ProfileDrawerItem().withName("蜀汉玫瑰").withEmail("lvyerose@163.com").withIcon(R.mipmap.ic_launcher);
-
+    void initDrawer() {
+        profile = new ProfileDrawerItem().withName(user_info.getData().getNick_name()).withEmail(user_info.getData().getUser_phone());
+//        profile.withIcon(BitmapFactory.decodeFileDescriptor())
         // Create the AccountHeader
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
@@ -160,7 +161,7 @@ public class MainActivity extends BaseActivity {
                     }
                 })
                 .build();
-
+        headerResult.getProfiles().get(0).withIcon(user_info.getData().getUser_icon());
         //create the CrossfadeDrawerLayout which will be used as alternative DrawerLayout for the Drawer
         crossfadeDrawerLayout = new CrossfadeDrawerLayout(this);
 
@@ -224,6 +225,7 @@ public class MainActivity extends BaseActivity {
                 return crossfadeDrawerLayout.isCrossfaded();
             }
         });
+
     }
 
     /**
@@ -258,7 +260,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @Click(R.id.id_user_bimv)
+    @Click(R.id.id_user_sdvw)
     void userIconClicked() {
         if (result != null && !result.isDrawerOpen()) {
             result.openDrawer();
@@ -271,11 +273,29 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @Subscriber(tag = "login_and_register")
-    private void updateUserWithTag(UserInfoBean user) {
-        if(user!=null && user.getData()!=null){
-            Toast.makeText(this , user.getData().getUser_phone()+"--"+user.getData().getUser_icon() , Toast.LENGTH_LONG).show();
+    private void updateUserInfo(UserInfoBean user) {
+        if (user != null && user.getData() != null) {
+            Uri uri = Uri.parse(user.getData().getUser_icon());
+            userIcon_sdvw.setImageURI(uri);
         }
+    }
+
+    void connectIM(){
+        String Token = "d6bCQsXiupB/4OyGkh+TOrI6ZiT8q7s0UEaMPWY0lMxmHdi1v/AAJxOma4aYXyaivfPIJjNHdE+FMH9kV/Jrxg==";
+        RongIM.connect(Token, new RongIMClient.ConnectCallback() {
+            @Override
+            public void onTokenIncorrect() {
+                //Connect Token 失效的状态处理，需要重新获取 Token
+            }
+
+            @Override
+            public void onSuccess(String userId) {
+            }
+
+            @Override
+            public void onError(RongIMClient.ErrorCode errorCode) {
+            }
+        });
     }
 
 }

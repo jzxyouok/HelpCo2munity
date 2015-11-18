@@ -17,6 +17,10 @@ public class NetworkConst {
     public static final String SEND_CODE = MAIN_ + "Login/mobileCode";
     /** 用户注册*/
     public static final String REGISTER = MAIN_ + "Login/register";
+    /** 获取活动界面顶部轮播图*/
+    public static final String GET_SF = MAIN_ + "Activity/getsf";
+    /** 获取活动界面列表数据*/
+    public static final String GET_LIST = MAIN_ + "Activity/getlist";
     /** 好友动态分页获取*/
     public static final String GET_FRIEND_DEY = "";
 

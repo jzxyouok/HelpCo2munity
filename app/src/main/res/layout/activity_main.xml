@@ -31,11 +31,17 @@
                     android:scaleType="centerInside"
                     android:src="@mipmap/icon_main_top_more" />
 
-                <com.mikepenz.materialdrawer.view.BezelImageView
-                    android:id="@+id/id_user_bimv"
+                <com.facebook.drawee.view.SimpleDraweeView
+                    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/id_user_sdvw"
                     android:layout_width="46dp"
                     android:layout_height="46dp"
-                    android:src="@drawable/defult_user"/>
+                    fresco:roundAsCircle="true"
+                    fresco:roundingBorderColor="#e9ffffff"
+                    fresco:roundingBorderWidth="1dp"
+                    fresco:placeholderImage="@drawable/defult_user"
+                    fresco:placeholderImageScaleType="fitCenter"
+                    />
 
                 <TextView
                     android:id="@+id/id_title_tv"

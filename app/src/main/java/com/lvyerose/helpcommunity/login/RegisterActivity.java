@@ -71,7 +71,7 @@ public class RegisterActivity extends BaseActivity {
         if (!TextUtils.isEmpty(phone) && phone.length() == 11) {
             Toast.makeText(this, "发送成功", Toast.LENGTH_SHORT).show();
 
-            NetworkServer.getMobCode(phone, new ResultCallback<MobileCodeBean>() {
+            NetworkServer.getMobCode(phone, new ResultCallback<BeanMobileCodeData>() {
                 @Override
                 public void onError(Request request, Exception e) {
                     sendCodeBtn.setEnabled(true);
@@ -79,12 +79,12 @@ public class RegisterActivity extends BaseActivity {
                 }
 
                 @Override
-                public void onResponse(MobileCodeBean mobileCodeBean) {
-                    if (mobileCodeBean != null && "success".equals(mobileCodeBean.getStatus())) {
-                        Toast.makeText(RegisterActivity.this, mobileCodeBean.getData(), Toast.LENGTH_LONG).show();
+                public void onResponse(BeanMobileCodeData beanMobileCodeData) {
+                    if (beanMobileCodeData != null && "success".equals(beanMobileCodeData.getStatus())) {
+                        Toast.makeText(RegisterActivity.this, beanMobileCodeData.getData(), Toast.LENGTH_LONG).show();
                         timeBackground();
                     }else{
-                        Toast.makeText(RegisterActivity.this, mobileCodeBean.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterActivity.this, beanMobileCodeData.getMessage(), Toast.LENGTH_LONG).show();
                         sendCodeBtn.setEnabled(true);
                         sendCodeBtn.setText(getResources().getString(R.string.register_send_code_text));
                     }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.lvyerose.helpcommunity.widgets.autoviewpager.AutoScrollViewPager
+        android:id="@+id/id_top_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="156dp">
+
+    </com.lvyerose.helpcommunity.widgets.autoviewpager.AutoScrollViewPager>
+
+    <com.flyco.pageindicator.indicator.FlycoPageIndicaor xmlns:fpi="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/indicator_round_rectangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/id_top_viewpager"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="12dp"
+        android:paddingTop="20dp"
+        fpi:fpi_cornerRadius="4dp"
+        fpi:fpi_gap="6dp"
+        fpi:fpi_height="4dp"
+        fpi:fpi_selectColor="#03A9F4"
+        fpi:fpi_unselectColor="#8803A9F4"
+        fpi:fpi_width="12dp" />
+
+    <TextView
+        android:id="@+id/id_top_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/id_top_viewpager"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="18dp"
+        android:layout_marginRight="16dp"
+        android:text="######"
+        android:textColor="#e6efef"
+        android:textSize="12sp" />
+</RelativeLayout>

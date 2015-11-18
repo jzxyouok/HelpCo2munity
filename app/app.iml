@@ -80,6 +80,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.8.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.8.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.8.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.flyco.pageindicator/FlycoPageIndicator_Lib/1.0.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.github.siyamed/android-shape-imageview/0.9.3/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.mikepenz/crossfadedrawerlayout/0.0.1-SNAPSHOT/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.mikepenz/crossfader/1.1.3/jars" />
@@ -140,5 +141,7 @@
     <orderEntry type="library" exported="" name="iconics-core-1.7.9" level="project" />
     <orderEntry type="library" exported="" name="crashreport-1.2.6" level="project" />
     <orderEntry type="library" exported="" name="android-shape-imageview-0.9.3" level="project" />
+    <orderEntry type="library" exported="" name="FlycoPageIndicator_Lib-1.0.0" level="project" />
+    <orderEntry type="module" module-name="IMKit" exported="" />
   </component>
 </module>

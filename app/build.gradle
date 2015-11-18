@@ -64,6 +64,12 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     //gson解析
     compile files('src/main/libs/okhttputils.jar')
+    //融云即时通讯
+    compile project(':IMKit')
+    //动画包
+    compile 'com.nineoldandroids:library:2.4.0'
+    //ViewPager滑动指示器
+    compile 'com.flyco.pageindicator:FlycoPageIndicator_Lib:1.0.0@aar'
 }
 
 apt {

@@ -47,7 +47,7 @@ public class LoginActivity extends BaseActivity {
 
     private void netWorkLogin(String username, String password) {
         dialogs();
-        NetworkServer.toLogin(username , password , new ResultCallback<UserInfoBean>() {
+        NetworkServer.toLogin(username, password, new ResultCallback<UserInfoBean>() {
             @Override
             public void onError(Request request, Exception e) {
                 cancelDialog();
@@ -58,9 +58,7 @@ public class LoginActivity extends BaseActivity {
                 cancelDialog();
                 Toast.makeText(LoginActivity.this, userInfoBean.getMessage(), Toast.LENGTH_LONG).show();
                 if (userInfoBean != null && "success".equals(userInfoBean.getStatus())) {
-                    MainActivity_.intent(LoginActivity.this).user_info(userInfoBean).start();
-//                            EventBus.getDefault().post(userInfoBean, "login_and_register");
-                    finish();
+                    startActivity(userInfoBean);
                 }
             }
         });
@@ -107,5 +105,12 @@ public class LoginActivity extends BaseActivity {
         if (pDialog != null) {
             pDialog.cancel();
         }
+    }
+
+
+    void startActivity(UserInfoBean userInfoBean){
+        MainActivity_.intent(LoginActivity.this).user_info(userInfoBean).start();
+        finish();
+
     }
 }

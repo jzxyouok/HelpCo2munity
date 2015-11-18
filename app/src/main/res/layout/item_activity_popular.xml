@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="188dp"
+    android:paddingTop="12dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp">
+    <com.facebook.drawee.view.SimpleDraweeView
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/id_activity_photo_item"
+        fresco:placeholderImage="@mipmap/icon_placeholder"
+        fresco:placeholderImageScaleType="fitCenter"
+        fresco:roundedCornerRadius="8dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="第一期"
+        android:textColor="#F1F1EF"
+        android:textSize="14sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="8dp"
+        android:id="@+id/id_activity_title_item"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="活动简单描叙"
+        android:textColor="#F1F1EF"
+        android:textSize="16sp"
+        android:layout_below="@+id/id_activity_title_item"
+        android:layout_alignLeft="@+id/id_activity_title_item"
+        android:layout_marginTop="4dp"
+        android:id="@+id/id_activity_dec_item"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="活动截止:2015-08-01"
+        android:textColor="#F1F1EF"
+        android:textSize="12sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/id_activity_time_item"
+        />
+
+
+</RelativeLayout>

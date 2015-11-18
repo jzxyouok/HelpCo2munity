@@ -56,10 +56,10 @@ public class UserInfoBean implements Serializable{
     public static class DataEntity implements Serializable{
         private String user_phone;
         private String pass_word;
-        private Object user_icon;
+        private String user_icon;
         private String nick_name;
-        private Object user_token;
-        private Object user_sex;
+        private String user_token;
+        private String user_sex;
 
         public void setUser_phone(String user_phone) {
             this.user_phone = user_phone;
@@ -69,7 +69,7 @@ public class UserInfoBean implements Serializable{
             this.pass_word = pass_word;
         }
 
-        public void setUser_icon(Object user_icon) {
+        public void setUser_icon(String user_icon) {
             this.user_icon = user_icon;
         }
 
@@ -77,11 +77,11 @@ public class UserInfoBean implements Serializable{
             this.nick_name = nick_name;
         }
 
-        public void setUser_token(Object user_token) {
+        public void setUser_token(String user_token) {
             this.user_token = user_token;
         }
 
-        public void setUser_sex(Object user_sex) {
+        public void setUser_sex(String user_sex) {
             this.user_sex = user_sex;
         }
 
@@ -93,7 +93,7 @@ public class UserInfoBean implements Serializable{
             return pass_word;
         }
 
-        public Object getUser_icon() {
+        public String getUser_icon() {
             return user_icon;
         }
 
@@ -101,11 +101,11 @@ public class UserInfoBean implements Serializable{
             return nick_name;
         }
 
-        public Object getUser_token() {
+        public String getUser_token() {
             return user_token;
         }
 
-        public Object getUser_sex() {
+        public String getUser_sex() {
             return user_sex;
         }
     }
