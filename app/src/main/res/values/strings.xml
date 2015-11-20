@@ -29,6 +29,7 @@
     <string name="register_password_hint_text">请设置您的密码</string>
     <string name="register_send_code_text">发送验证码</string>
     <string name="register_sending_code_text">已发送...</string>
+    <string name="title_activity_my_message">MyMessageActivity</string>
 
 
 </resources>

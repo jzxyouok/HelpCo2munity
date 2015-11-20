@@ -21,6 +21,7 @@ import com.lvyerose.helpcommunity.helping.HelppingFragment_;
 import com.lvyerose.helpcommunity.im.FriendFragment_;
 import com.lvyerose.helpcommunity.im.MessageFragment_;
 import com.lvyerose.helpcommunity.login.UserInfoBean;
+import com.lvyerose.helpcommunity.slidingmenu.me.MyMessageActivity_;
 import com.mikepenz.crossfadedrawerlayout.view.CrossfadeDrawerLayout;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -99,9 +100,9 @@ public class MainActivity extends BaseActivity {
         initDrawer();
         initRadioButtonIcon();
         updateUserInfo(user_info);
+        setFragments();
     }
 
-    @AfterViews
     void setFragments() {
         mFragmentList.add(new FindFragment_());
         mFragmentList.add(new FriendFragment_());
@@ -155,7 +156,7 @@ public class MainActivity extends BaseActivity {
                     public boolean onProfileChanged(View view, IProfile profile, boolean current) {
                         //IMPORTANT! notify the MiniDrawer about the profile click
                         miniResult.onProfileClick();
-                        Toast.makeText(MainActivity.this, profile.getName().getText(), Toast.LENGTH_SHORT).show();
+                        MyMessageActivity_.intent(MainActivity.this).userInfo(user_info).start();
                         //false if you have not consumed the event and it should close the drawer
                         return false;
                     }
@@ -213,7 +214,7 @@ public class MainActivity extends BaseActivity {
             public void crossfade() {
                 boolean isFaded = isCrossfaded();
                 crossfadeDrawerLayout.crossfade(400);
-
+                Toast.makeText(MainActivity.this , "---" ,Toast.LENGTH_SHORT).show();
                 //only close the drawer if we were already faded and want to close it now
                 if (isFaded) {
                     result.getDrawerLayout().closeDrawer(GravityCompat.START);
@@ -225,6 +226,7 @@ public class MainActivity extends BaseActivity {
                 return crossfadeDrawerLayout.isCrossfaded();
             }
         });
+
 
     }
 
@@ -297,5 +299,6 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
+
 
 }

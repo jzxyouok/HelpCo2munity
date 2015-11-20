@@ -10,21 +10,26 @@ import java.io.Serializable;
  */
 public class UserInfoBean implements Serializable{
 
+
     /**
      * status : success
      * message : 登陆成功
-     * data : {"user_phone":"18311321513","pass_word":"123456aA","user_icon":null,"nick_name":"蜀汉玫瑰","user_token":null,"user_sex":null}
+     * data : {"user_phone":"18311321513","pass_word":"120726","user_icon":"http://www.lvyerose.com/helpping/res/default/default_icon.png","nick_name":"蜀汉玫瑰","user_token":"123456","user_sex":"1","user_id":"123","user_dec":"只有纯粹的力量才能带来存储","user_school":"湖南科技学院","user_bg":"Htt"}
      */
 
     private String status;
     private String message;
     /**
      * user_phone : 18311321513
-     * pass_word : 123456aA
-     * user_icon : null
+     * pass_word : 120726
+     * user_icon : http://www.lvyerose.com/helpping/res/default/default_icon.png
      * nick_name : 蜀汉玫瑰
-     * user_token : null
-     * user_sex : null
+     * user_token : 123456
+     * user_sex : 1
+     * user_id : 123
+     * user_dec : 只有纯粹的力量才能带来存储
+     * user_school : 湖南科技学院
+     * user_bg : Htt
      */
 
     private DataEntity data;
@@ -60,6 +65,10 @@ public class UserInfoBean implements Serializable{
         private String nick_name;
         private String user_token;
         private String user_sex;
+        private String user_id;
+        private String user_dec;
+        private String user_school;
+        private String user_bg;
 
         public void setUser_phone(String user_phone) {
             this.user_phone = user_phone;
@@ -85,6 +94,22 @@ public class UserInfoBean implements Serializable{
             this.user_sex = user_sex;
         }
 
+        public void setUser_id(String user_id) {
+            this.user_id = user_id;
+        }
+
+        public void setUser_dec(String user_dec) {
+            this.user_dec = user_dec;
+        }
+
+        public void setUser_school(String user_school) {
+            this.user_school = user_school;
+        }
+
+        public void setUser_bg(String user_bg) {
+            this.user_bg = user_bg;
+        }
+
         public String getUser_phone() {
             return user_phone;
         }
@@ -107,6 +132,22 @@ public class UserInfoBean implements Serializable{
 
         public String getUser_sex() {
             return user_sex;
+        }
+
+        public String getUser_id() {
+            return user_id;
+        }
+
+        public String getUser_dec() {
+            return user_dec;
+        }
+
+        public String getUser_school() {
+            return user_school;
+        }
+
+        public String getUser_bg() {
+            return user_bg;
         }
     }
 }

@@ -35,7 +35,6 @@
     </style>
 
 
-
     <!-- 欢迎界面主题 -->
     <style name="ActivityWellComeTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -57,7 +56,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!-- 底部导航菜单按钮通用样式属性 -->
-    <style name="RadioButton_setting" >
+    <style name="RadioButton_setting">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
@@ -68,6 +67,17 @@
         <item name="android:drawablePadding">6dp</item>
         <item name="android:textSize">10sp</item>
         <item name="android:textColor">@drawable/foot_text_color_select</item>
+    </style>
+
+
+    <style name="Base.Theme.DesignDemo" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionSheetStyle">@style/ActionSheetStyleiOS7</item>
+    </style>
+
+    <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo" >
     </style>
 
 </resources>

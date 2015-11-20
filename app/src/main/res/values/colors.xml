@@ -48,4 +48,9 @@
     <color name="item_content_text_color">#666666</color>
     <color name="item_bottom_text_color">#ff808080</color>
 
+    <!-- activity color-->
+    <color name="item_overlay_top_color">#64000000</color>
+
+
+    <color name="cache_color" >#FFF5F5F5</color>
 </resources>

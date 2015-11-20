@@ -3,6 +3,9 @@ package com.lvyerose.helpcommunity.utils;
 import android.app.Activity;
 import android.view.Display;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * author: lvyeRose
  * objective:
@@ -44,4 +47,18 @@ public final static String ACTIVITY_WIDTH = "activity_width";
             return 0;
         }
     }
+
+    /**
+     *  获取系统时间
+     * @param format
+     * @return
+     */
+    public static String getSystemTime(String format){
+        String time = null;
+        SimpleDateFormat df = new SimpleDateFormat(format);//设置日期格式
+        time = df.format(new Date(System.currentTimeMillis()));// new Date()为获取当前系统时间
+        return time;
+    }
+
+
 }
