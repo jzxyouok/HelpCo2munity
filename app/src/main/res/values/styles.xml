@@ -77,7 +77,6 @@
         <item name="actionSheetStyle">@style/ActionSheetStyleiOS7</item>
     </style>
 
-    <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo" >
-    </style>
+    <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo"></style>
 
 </resources>

@@ -51,6 +51,10 @@
     <!-- activity color-->
     <color name="item_overlay_top_color">#64000000</color>
 
+    <!-- edit color-->
+    <color name="update_text_no_click_color">#e7cae2</color>
+    <color name="update_text_can_click_color">#ffffffff</color>
+
 
     <color name="cache_color" >#FFF5F5F5</color>
 </resources>

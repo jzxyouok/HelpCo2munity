@@ -18,6 +18,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.lvyerose.helpcommunity.R;
 import com.lvyerose.helpcommunity.base.Const;
+import com.lvyerose.helpcommunity.common.network.NetworkConst;
 import com.lvyerose.helpcommunity.login.UserInfoBean;
 import com.lvyerose.helpcommunity.widgets.cemare.CamareAndPhotoUtils;
 import com.squareup.okhttp.Request;
@@ -28,6 +29,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.LongClick;
 import org.androidannotations.annotations.ViewById;
 
 import java.io.File;
@@ -103,12 +105,31 @@ public class MyMessageActivity extends AppCompatActivity implements ActionSheet.
                 .displayImage(null);
     }
 
+
     private void loadMessage(UserInfoBean userInfo) {
         user_id_tv.setText(userInfo.getData().getUser_id());
         nick_name_tv.setText(userInfo.getData().getNick_name());
         user_sex_tv.setText(userInfo.getData().getUser_sex());
         user_school_tv.setText(userInfo.getData().getUser_school());
         user_dec_tv.setText(userInfo.getData().getUser_dec());
+    }
+
+    @LongClick({
+            R.id.id_click_nick_linear,
+            R.id.id_click_school_linear,
+            R.id.id_click_dec_linear})
+    void onLongClick(View view) {
+        switch (view.getId()) {
+            case R.id.id_click_nick_linear:
+                EditMessageActivity_.intent(this).type("1").title("昵称").content(userInfo.getData().getNick_name()).start();
+                break;
+            case R.id.id_click_school_linear:
+                EditMessageActivity_.intent(this).type("2").title("学校").content(userInfo.getData().getUser_school()).start();
+                break;
+            case R.id.id_click_dec_linear:
+                EditMessageActivity_.intent(this).type("3").title("一句话").content(userInfo.getData().getUser_dec()).start();
+                break;
+        }
     }
 
 
@@ -139,14 +160,18 @@ public class MyMessageActivity extends AppCompatActivity implements ActionSheet.
      *
      * @param file
      */
-    private void updataIcon(String type , File file) {
+    private void updataIcon(String type, File file) {
+        if (file == null) {
+            return;
+        }
+
         Pair<String, File> files = new Pair<>("photo", file);
         Map<String, String> params = new HashMap<>();
         params.put("user_type", type);
         params.put("user_phone", userInfo.getData().getUser_phone());
 
         new OkHttpRequest.Builder()
-                .url("http://www.lvyerose.com/helpping/index.php/Home/Update/updateIcon")
+                .url(NetworkConst.UPDATE_ICON)
                 .params(params)
                 .files(files)
                 .upload(new ResultCallback<UserInfoBean>() {
@@ -157,7 +182,7 @@ public class MyMessageActivity extends AppCompatActivity implements ActionSheet.
 
                     @Override
                     public void onResponse(UserInfoBean o) {
-                        loadTopImg(o.getData().getUser_bg() , o.getData().getUser_icon());
+                        loadTopImg(o.getData().getUser_bg(), o.getData().getUser_icon());
                     }
                 });
     }
@@ -167,24 +192,20 @@ public class MyMessageActivity extends AppCompatActivity implements ActionSheet.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        final Uri uri = data.getData();
+        String path = uri.getEncodedPath();
+        final File file = new File(path);
         //选择头像图片结果
         if (requestCode == Const.MESSAGE_ICON_SELECT
                 && resultCode == RESULT_OK) {
-            final Uri uri = data.getData();
-            String path = uri.getEncodedPath();
-            final File file = new File(path);
-            updataIcon("1",file);
+            updataIcon("1", file);
 
         }
 
         //选择背景图片结果
         if (requestCode == Const.MESSAGE_BG_SELECT
                 && resultCode == RESULT_OK) {
-            final Uri uri = data.getData();
-            String path = uri.getEncodedPath();
-            final File file = new File(path);
-            updataIcon("2",file);
-
+            updataIcon("2", file);
         }
 
 
@@ -220,42 +241,7 @@ public class MyMessageActivity extends AppCompatActivity implements ActionSheet.
     }
 
 
+
+
 }
 
-
-//处理虚化效果
-//    private void applyBlur(Bitmap bitmap) {
-//        topBgSdwv.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-//
-//            @Override
-//            public boolean onPreDraw() {
-//                topBgSdwv.getViewTreeObserver().removeOnPreDrawListener(this);
-//                topBgSdwv.buildDrawingCache();
-//                Bitmap bmp = topBgSdwv.getDrawingCache();
-//                blur(bmp, topBg);
-//                return true;
-//            }
-//        });
-//
-////        blur(bitmap, topBg);
-//    }
-//
-//    /**
-//     *  处理虚化背景
-//     * @param bkg
-//     * @param view
-//     */
-//    private void blur(Bitmap bkg, View view) {
-//        float radius = 2;
-//        float scaleFactor = 8;
-//
-//        Bitmap overlay = Bitmap.createBitmap((int)(view.getMeasuredWidth()/scaleFactor), (int)(view.getMeasuredHeight()/scaleFactor), Bitmap.Config.ARGB_8888);
-//        Canvas canvas = new Canvas(overlay);
-//        canvas.translate(-view.getLeft()/scaleFactor, -view.getTop()/scaleFactor);
-//        canvas.scale(1 / scaleFactor, 1 / scaleFactor);
-//        Paint paint = new Paint();
-//        paint.setFlags(Paint.FILTER_BITMAP_FLAG);
-//        canvas.drawBitmap(bkg, 0, 0, paint);
-//        overlay = FastBlur.doBlur(overlay, (int) radius, true);
-//        view.setBackground(new BitmapDrawable(getResources(), overlay));
-//    }

@@ -11,8 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".base.BaseApplication"
@@ -43,9 +43,12 @@
             android:theme="@style/Login_Register_AppThem" />
         <activity
             android:name=".slidingmenu.me.MyMessageActivity_"
-            android:theme="@style/Theme.DesignDemo">
-        </activity>
-        <activity android:name=".widgets.cemare.CamareAndPhotoUtils"/>
+            android:theme="@style/Theme.DesignDemo"></activity>
+        <activity android:name=".widgets.cemare.CamareAndPhotoUtils" />
+        <activity
+            android:name=".slidingmenu.me.EditMessageActivity_"
+            android:label="@string/title_activity_edit_message"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
