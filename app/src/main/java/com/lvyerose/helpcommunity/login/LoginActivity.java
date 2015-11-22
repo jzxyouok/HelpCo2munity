@@ -8,8 +8,10 @@ import android.widget.Toast;
 
 import com.lvyerose.helpcommunity.R;
 import com.lvyerose.helpcommunity.base.BaseActivity;
+import com.lvyerose.helpcommunity.base.Const;
 import com.lvyerose.helpcommunity.common.network.NetworkServer;
 import com.lvyerose.helpcommunity.main.MainActivity_;
+import com.lvyerose.helpcommunity.utils.ACache;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.callback.ResultCallback;
 
@@ -58,6 +60,8 @@ public class LoginActivity extends BaseActivity {
                 cancelDialog();
                 Toast.makeText(LoginActivity.this, userInfoBean.getMessage(), Toast.LENGTH_LONG).show();
                 if (userInfoBean != null && "success".equals(userInfoBean.getStatus())) {
+                    ACache aCache = ACache.get(LoginActivity.this);
+                    aCache.put(Const.ACACHE_USER_ID, userInfoBean.getData().getUser_phone());
                     startActivity(userInfoBean);
                 }
             }

@@ -31,10 +31,13 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.LongClick;
 import org.androidannotations.annotations.ViewById;
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+
 
 @EActivity(R.layout.activity_my_message)
 public class MyMessageActivity extends AppCompatActivity implements ActionSheet.ActionSheetListener {
@@ -60,6 +63,8 @@ public class MyMessageActivity extends AppCompatActivity implements ActionSheet.
 
     @AfterViews
     void initViews() {
+        // 注册对象
+        EventBus.getDefault().register(this);
         setAppBar(userInfo.getData().getNick_name());
         loadMessage(userInfo);
         loadTopImg(userInfo.getData().getUser_bg(), userInfo.getData().getUser_icon());
@@ -109,7 +114,7 @@ public class MyMessageActivity extends AppCompatActivity implements ActionSheet.
     private void loadMessage(UserInfoBean userInfo) {
         user_id_tv.setText(userInfo.getData().getUser_id());
         nick_name_tv.setText(userInfo.getData().getNick_name());
-        user_sex_tv.setText(userInfo.getData().getUser_sex());
+        user_sex_tv.setText(userInfo.getData().getUser_sex().equals("0") ? "男" : "女");
         user_school_tv.setText(userInfo.getData().getUser_school());
         user_dec_tv.setText(userInfo.getData().getUser_dec());
     }
@@ -183,6 +188,7 @@ public class MyMessageActivity extends AppCompatActivity implements ActionSheet.
                     @Override
                     public void onResponse(UserInfoBean o) {
                         loadTopImg(o.getData().getUser_bg(), o.getData().getUser_icon());
+                        EventBus.getDefault().post(o, "update_user");
                     }
                 });
     }
@@ -242,6 +248,25 @@ public class MyMessageActivity extends AppCompatActivity implements ActionSheet.
 
 
 
+
+
+
+    // 接收方法,默认的tag,执行在UI线程
+    @Subscriber(tag = "update_user")
+    private void updateUser(UserInfoBean user) {
+        loadMessage(user);
+    }
+
+
+
+
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+
+    }
 
 }
 

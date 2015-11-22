@@ -44,6 +44,8 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.res.StringArrayRes;
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +94,7 @@ public class MainActivity extends BaseActivity {
 
     @AfterViews
     void init() {
+        EventBus.getDefault().register(this);
         connectIM();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
@@ -99,7 +102,7 @@ public class MainActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         initDrawer();
         initRadioButtonIcon();
-        updateUserInfo(user_info);
+        updateUser(user_info);
         setFragments();
     }
 
@@ -275,12 +278,18 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    private void updateUserInfo(UserInfoBean user) {
+
+    //更新主页用户信息
+    // 接收方法,默认的tag,执行在UI线程
+    @Subscriber(tag = "update_user")
+    private void updateUser(UserInfoBean user) {
         if (user != null && user.getData() != null) {
+            user_info = user;
             Uri uri = Uri.parse(user.getData().getUser_icon());
             userIcon_sdvw.setImageURI(uri);
         }
     }
+
 
     void connectIM(){
         String Token = "d6bCQsXiupB/4OyGkh+TOrI6ZiT8q7s0UEaMPWY0lMxmHdi1v/AAJxOma4aYXyaivfPIJjNHdE+FMH9kV/Jrxg==";
@@ -300,5 +309,11 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
 
 }

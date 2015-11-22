@@ -19,6 +19,8 @@ public class NetworkConst {
     public static final String REGISTER = MAIN_ + "Login/register";
     /** 图像更新接口*/
     public static final String UPDATE_ICON = MAIN_ + "Update/updateIcon";
+    /** 用户文字信息更新接口*/
+    public static final String UPDATE_MESSAGE = MAIN_ + "Update/updateMessage";
     /** 获取活动界面顶部轮播图*/
     public static final String GET_SF = MAIN_ + "Activity/getsf";
     /** 获取活动界面列表数据*/

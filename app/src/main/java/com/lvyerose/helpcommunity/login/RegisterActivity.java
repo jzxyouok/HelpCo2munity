@@ -11,8 +11,10 @@ import android.widget.Toast;
 
 import com.lvyerose.helpcommunity.R;
 import com.lvyerose.helpcommunity.base.BaseActivity;
+import com.lvyerose.helpcommunity.base.Const;
 import com.lvyerose.helpcommunity.common.network.NetworkServer;
 import com.lvyerose.helpcommunity.main.MainActivity_;
+import com.lvyerose.helpcommunity.utils.ACache;
 import com.squareup.okhttp.Request;
 import com.zhy.http.okhttp.callback.ResultCallback;
 
@@ -69,11 +71,11 @@ public class RegisterActivity extends BaseActivity {
     private void doSendCode() {
         String phone = userNameEdt.getText().toString().trim();
         if (!TextUtils.isEmpty(phone) && phone.length() == 11) {
-            Toast.makeText(this, "发送成功", Toast.LENGTH_SHORT).show();
 
             NetworkServer.getMobCode(phone, new ResultCallback<BeanMobileCodeData>() {
                 @Override
                 public void onError(Request request, Exception e) {
+                    Toast.makeText(RegisterActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
                     sendCodeBtn.setEnabled(true);
                     sendCodeBtn.setText(getResources().getString(R.string.register_send_code_text));
                 }
@@ -113,6 +115,8 @@ public class RegisterActivity extends BaseActivity {
                 cancelDialog();
                 Toast.makeText(RegisterActivity.this , userInfoBean.getMessage() , Toast.LENGTH_LONG).show();
                 if(userInfoBean != null && "success".equals(userInfoBean.getStatus())){
+                    ACache aCache = ACache.get(RegisterActivity.this);
+                    aCache.put(Const.ACACHE_USER_ID, userInfoBean.getData().getUser_phone());
                     MainActivity_.intent(RegisterActivity.this).user_info(userInfoBean).start();
                     finish();
                 }

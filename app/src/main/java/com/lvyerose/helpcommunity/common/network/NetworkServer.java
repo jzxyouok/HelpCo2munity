@@ -61,18 +61,39 @@ public class NetworkServer {
         new BaseNetwor().post(url, params, resultCallback);
     }
 
+    /**
+     *  活动界面顶部轮播图
+     * @param resultCallback
+     */
     public static void getTopData(ResultCallback<?> resultCallback) {
         String url = NetworkConst.GET_SF;
-//        Map<String , String > params = new HashMap<>();
         new BaseNetwor().get(url, resultCallback);
-//        new BaseNetwor().post(url , params , resultCallback );
     }
 
+    /**
+     * 活动界面底部list列表活动项
+     * @param resultCallback
+     */
     public static void getListData(ResultCallback<?> resultCallback) {
         String url = NetworkConst.GET_LIST;
-//        Map<String , String > params = new HashMap<>();
         new BaseNetwor().get(url, resultCallback);
-//        new BaseNetwor().post(url , params , resultCallback );
+    }
+
+    /**
+     * 更新用户文字信息
+     * @param user_phone
+     * @param user_type
+     * @param user_content
+     * @param resultCallback
+     */
+    public static void updateMessage(String user_phone, String user_type, String user_content
+            , ResultCallback<?> resultCallback) {
+        String url = NetworkConst.UPDATE_MESSAGE;
+        Map<String, String> params = new HashMap<>();
+        params.put("user_phone", user_phone);
+        params.put("user_type", user_type);
+        params.put("user_content", user_content);
+        new BaseNetwor().post(url, params, resultCallback);
     }
 
 

@@ -8,6 +8,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lvyerose.helpcommunity.R;
+import com.lvyerose.helpcommunity.base.Const;
+import com.lvyerose.helpcommunity.common.network.NetworkServer;
+import com.lvyerose.helpcommunity.login.UserInfoBean;
+import com.lvyerose.helpcommunity.utils.ACache;
+import com.squareup.okhttp.Request;
+import com.zhy.http.okhttp.callback.ResultCallback;
 
 import org.androidannotations.annotations.AfterTextChange;
 import org.androidannotations.annotations.AfterViews;
@@ -15,6 +21,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
+import org.simple.eventbus.EventBus;
 
 @EActivity(R.layout.activity_edit_message)
 public class EditMessageActivity extends AppCompatActivity {
@@ -24,6 +31,8 @@ public class EditMessageActivity extends AppCompatActivity {
     String content;
     @Extra
     String type;            //修改属性的类型   1 昵称   2 学校   3 一句话
+
+    UserInfoBean userInfoBean;
 
     @ViewById(R.id.id_title_tv)
     TextView title_tv;
@@ -69,7 +78,7 @@ public class EditMessageActivity extends AppCompatActivity {
 
     @Click(R.id.id_title_update_tv)
     void updateClick() {
-        Toast.makeText(this , "更新数据并返回" , Toast.LENGTH_SHORT).show();
+        updateMessage();
     }
 
     @AfterTextChange(R.id.id_input_1line_edt)
@@ -78,25 +87,46 @@ public class EditMessageActivity extends AppCompatActivity {
             update_tv.setEnabled(false);
         }else {
             if("1".equals(type)){
-                if(content.length()<=6){
+                if(content.length()<=8){
                     update_tv.setEnabled(true);
                 }else{
                     update_tv.setEnabled(false);
                 }
             }else if ("2".equals(type)){
-                if(content.length()<=10){
+                if(content.length()<=12){
                     update_tv.setEnabled(true);
                 }else{
                     update_tv.setEnabled(false);
                 }
             }else if ("3".equals(type)){
-                if(content.length()<=16){
+                if(content.length()<=22){
                     update_tv.setEnabled(true);
                 }else{
                     update_tv.setEnabled(false);
                 }
             }
         }
+    }
+
+    private void updateMessage(){
+        ACache aCache = ACache.get(this);
+        NetworkServer.updateMessage(aCache.getAsString(Const.ACACHE_USER_ID), type, inputOneLineEdt.getText().toString().trim(),
+                new ResultCallback<UserInfoBean>() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        Toast.makeText(EditMessageActivity.this , "无效网络连接" , Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(UserInfoBean userInfoBean) {
+                        if(userInfoBean!=null && "success".equals(userInfoBean.getStatus())){
+                            EventBus.getDefault().post( userInfoBean , "update_user");
+                            EditMessageActivity.this.finish();
+                        }else {
+                            Toast.makeText(EditMessageActivity.this , "更新失败" , Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 
