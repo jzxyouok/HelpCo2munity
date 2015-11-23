@@ -62,7 +62,8 @@ public class NetworkServer {
     }
 
     /**
-     *  活动界面顶部轮播图
+     * 活动界面顶部轮播图
+     *
      * @param resultCallback
      */
     public static void getTopData(ResultCallback<?> resultCallback) {
@@ -72,6 +73,7 @@ public class NetworkServer {
 
     /**
      * 活动界面底部list列表活动项
+     *
      * @param resultCallback
      */
     public static void getListData(ResultCallback<?> resultCallback) {
@@ -81,6 +83,7 @@ public class NetworkServer {
 
     /**
      * 更新用户文字信息
+     *
      * @param user_phone
      * @param user_type
      * @param user_content
@@ -93,6 +96,20 @@ public class NetworkServer {
         params.put("user_phone", user_phone);
         params.put("user_type", user_type);
         params.put("user_content", user_content);
+        new BaseNetwor().post(url, params, resultCallback);
+    }
+
+    /**
+     * 获取用户好友列表
+     *
+     * @param user_phone
+     * @param resultCallback
+     */
+    public static void getFriends(String user_phone
+            , ResultCallback<?> resultCallback) {
+        String url = NetworkConst.GET_FRIEND;
+        Map<String, String> params = new HashMap<>();
+        params.put("user_phone", user_phone);
         new BaseNetwor().post(url, params, resultCallback);
     }
 

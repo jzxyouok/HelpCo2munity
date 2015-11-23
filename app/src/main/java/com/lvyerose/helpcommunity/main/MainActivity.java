@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
@@ -24,16 +25,12 @@ import com.lvyerose.helpcommunity.login.UserInfoBean;
 import com.lvyerose.helpcommunity.slidingmenu.me.MyMessageActivity_;
 import com.mikepenz.crossfadedrawerlayout.view.CrossfadeDrawerLayout;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
-import com.mikepenz.materialdrawer.AccountHeader;
-import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.MiniDrawer;
 import com.mikepenz.materialdrawer.interfaces.ICrossfader;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import com.mikepenz.materialdrawer.util.DrawerUIUtils;
 import com.mikepenz.materialize.util.UIUtils;
@@ -51,8 +48,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import io.rong.imkit.RongIM;
-import io.rong.imlib.RongIMClient;
 
 /**
  * author: lvyeRose
@@ -64,8 +59,7 @@ import io.rong.imlib.RongIMClient;
 public class MainActivity extends BaseActivity {
     @Extra("user_info")
     UserInfoBean user_info;
-    //底部导航
-    private AccountHeader headerResult = null;
+    //侧滑菜单
     private Drawer result = null;
     private MiniDrawer miniResult = null;
     private CrossfadeDrawerLayout crossfadeDrawerLayout = null;
@@ -89,24 +83,29 @@ public class MainActivity extends BaseActivity {
     String[] titles;
     @ViewById(R.id.id_user_sdvw)
     SimpleDraweeView userIcon_sdvw;
-    IProfile profile;       //侧滑菜单头部控制器
+
+    //HeardViews
+    SimpleDraweeView headUserIcon;
+    TextView headNick;
+    TextView headPhone;
 
 
     @AfterViews
     void init() {
         EventBus.getDefault().register(this);
-        connectIM();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        mTitle.setText(titles[0]);
-        setSupportActionBar(toolbar);
+        initToolbar();
         initDrawer();
         initRadioButtonIcon();
         updateUser(user_info);
         setFragments();
     }
-
-    void setFragments() {
+    private void initToolbar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        mTitle.setText(titles[0]);
+        setSupportActionBar(toolbar);
+    }
+    private void setFragments() {
         mFragmentList.add(new FindFragment_());
         mFragmentList.add(new FriendFragment_());
         mFragmentList.add(new Fragment());
@@ -125,7 +124,7 @@ public class MainActivity extends BaseActivity {
     /**
      * 动态设置RadioButton的图标，可以变换图标 达到合适的大小
      */
-    void initRadioButtonIcon() {
+    private void initRadioButtonIcon() {
         for (int i = 0; i < mRgp.getChildCount(); i++) {
             RadioButton radioButton = (RadioButton) mRgp.getChildAt(i);
             Drawable myImage = getResources().getDrawable(resIconIds[i]);
@@ -139,44 +138,31 @@ public class MainActivity extends BaseActivity {
     /**
      * 初始化侧滑菜单
      */
-    void initDrawer() {
-        profile = new ProfileDrawerItem().withName(user_info.getData().getNick_name()).withEmail(user_info.getData().getUser_phone());
-//        profile.withIcon(BitmapFactory.decodeFileDescriptor())
-        // Create the AccountHeader
-        headerResult = new AccountHeaderBuilder()
-                .withActivity(this)
-//                .withCompactStyle(true)
-                .withHeaderBackground(R.mipmap.slidingmenu_bg)
-                .withDividerBelowHeader(true)
-                .withSelectionListEnabledForSingleProfile(false)
-                .withSelectionListEnabled(false)
-                .addProfiles(
-                        profile
-//                        //don't ask but google uses 14dp for the add account icon in gmail but 20dp for the normal icons (like manage account)
-                )
-                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
-                    @Override
-                    public boolean onProfileChanged(View view, IProfile profile, boolean current) {
-                        //IMPORTANT! notify the MiniDrawer about the profile click
-                        miniResult.onProfileClick();
-                        MyMessageActivity_.intent(MainActivity.this).userInfo(user_info).start();
-                        //false if you have not consumed the event and it should close the drawer
-                        return false;
-                    }
-                })
-                .build();
-        headerResult.getProfiles().get(0).withIcon(user_info.getData().getUser_icon());
-        //create the CrossfadeDrawerLayout which will be used as alternative DrawerLayout for the Drawer
+    private void initDrawer() {
         crossfadeDrawerLayout = new CrossfadeDrawerLayout(this);
+
+        View headView = LayoutInflater.from(this).inflate(R.layout.nav_header_main , null);
+        headView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyMessageActivity_.intent(MainActivity.this).userInfo(user_info).start();
+                result.closeDrawer();
+            }
+        });
+
+        //初始化头部控件
+        headUserIcon = (SimpleDraweeView) headView.findViewById(R.id.id_sliding_icon_sdwv);
+        headPhone = (TextView) headView.findViewById(R.id.id_sliding_phone);
+        headNick = (TextView) headView.findViewById(R.id.id_sliding_nick);
 
         //Create the drawer
         result = new DrawerBuilder()
                 .withActivity(this)
+                        .withHeader(headView)
 //                .withToolbar(toolbar)
                 .withDrawerLayout(crossfadeDrawerLayout)
                 .withHasStableIds(true)
                 .withDrawerWidthDp(72)
-                .withAccountHeader(headerResult, true) //set the AccountHeader we created earlier for the header
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName(R.string.drawer_item_me_zone).withIcon(FontAwesome.Icon.faw_user_md),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_me_collect).withIcon(FontAwesome.Icon.faw_tags),
@@ -193,7 +179,6 @@ public class MainActivity extends BaseActivity {
                             Toast.makeText(MainActivity.this, ((Nameable) drawerItem).getName().getText(MainActivity.this), Toast.LENGTH_SHORT).show();
                         }
 
-                        //IMPORTANT notify the MiniDrawer about the onItemClick
                         return miniResult.onItemClick(drawerItem);
 
                     }
@@ -203,7 +188,7 @@ public class MainActivity extends BaseActivity {
         //define maxDrawerWidth
         crossfadeDrawerLayout.setMaxWidthPx(DrawerUIUtils.getOptimalDrawerWidth(this));
         //add second view (which is the miniDrawer)
-        miniResult = new MiniDrawer().withDrawer(result).withAccountHeader(headerResult);
+        miniResult = new MiniDrawer().withDrawer(result);
         //build the view for the MiniDrawer
         View view = miniResult.build(this);
         //set the background of the MiniDrawer as this would be transparent
@@ -217,7 +202,6 @@ public class MainActivity extends BaseActivity {
             public void crossfade() {
                 boolean isFaded = isCrossfaded();
                 crossfadeDrawerLayout.crossfade(400);
-                Toast.makeText(MainActivity.this , "---" ,Toast.LENGTH_SHORT).show();
                 //only close the drawer if we were already faded and want to close it now
                 if (isFaded) {
                     result.getDrawerLayout().closeDrawer(GravityCompat.START);
@@ -283,30 +267,7 @@ public class MainActivity extends BaseActivity {
     // 接收方法,默认的tag,执行在UI线程
     @Subscriber(tag = "update_user")
     private void updateUser(UserInfoBean user) {
-        if (user != null && user.getData() != null) {
-            user_info = user;
-            Uri uri = Uri.parse(user.getData().getUser_icon());
-            userIcon_sdvw.setImageURI(uri);
-        }
-    }
-
-
-    void connectIM(){
-        String Token = "d6bCQsXiupB/4OyGkh+TOrI6ZiT8q7s0UEaMPWY0lMxmHdi1v/AAJxOma4aYXyaivfPIJjNHdE+FMH9kV/Jrxg==";
-        RongIM.connect(Token, new RongIMClient.ConnectCallback() {
-            @Override
-            public void onTokenIncorrect() {
-                //Connect Token 失效的状态处理，需要重新获取 Token
-            }
-
-            @Override
-            public void onSuccess(String userId) {
-            }
-
-            @Override
-            public void onError(RongIMClient.ErrorCode errorCode) {
-            }
-        });
+        setUserInfo(user);
     }
 
 
@@ -315,5 +276,25 @@ public class MainActivity extends BaseActivity {
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
+
+    /**
+     * 设置用户信息
+     * @param user
+     */
+    private void setUserInfo(UserInfoBean user){
+        if (user != null && user.getData() != null) {
+            if(user != user_info){
+                user_info = user;
+            }
+            Uri uri = Uri.parse(user.getData().getUser_icon());
+            userIcon_sdvw.setImageURI(uri);
+
+            headUserIcon.setImageURI(uri);
+            headPhone.setText(user.getData().getUser_phone());
+            headNick.setText(user.getData().getNick_name());
+        }
+    }
+
+
 
 }

@@ -9,6 +9,9 @@ package com.lvyerose.helpcommunity.base;
 public class Const {
     public final static String ACACHE_NAME = "BBCOM";
     public final static String ACACHE_USER_ID = "user_id";
+    public final static String ACACHE_USER_PHONE = "user_phone";
+    public final static String ACACHE_USER_ICON = "user_icon";
+    public final static String ACACHE_USER_NAME = "user_name";
 
 
     //设置用户信息背景图片选择请求

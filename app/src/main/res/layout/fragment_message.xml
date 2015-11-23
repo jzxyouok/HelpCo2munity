@@ -5,11 +5,12 @@
     tools:context="layout.MessageFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
+        android:id="@+id/to_IM"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textColor="@color/md_blue_400"
         android:gravity="center"
-        android:text="消息界面" />
+        android:text="点击和你聊天" />
 
 </FrameLayout>

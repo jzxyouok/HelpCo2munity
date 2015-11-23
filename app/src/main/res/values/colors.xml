@@ -17,6 +17,9 @@
     <color name="find_top_normal_text">#605f5f</color>
     <color name="main_pressed_text">#9C58B6</color>
     <color name="main_base_background" >#13BABA</color>
+
+    <color name="sliding_heard_text_color" >#ffffff</color>
+
     <!-- login color-->
     <color name="login_register_colorPrimary">#13BABA</color>
     <color name="login_register_colorPrimaryDark">#13BABA</color>

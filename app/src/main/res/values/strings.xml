@@ -31,6 +31,7 @@
     <string name="register_sending_code_text">已发送...</string>
     <string name="title_activity_my_message">MyMessageActivity</string>
     <string name="title_activity_edit_message">EditMessageActivity</string>
+    <string name="title_activity_conversation">ConversationActivity</string>
 
 
 </resources>

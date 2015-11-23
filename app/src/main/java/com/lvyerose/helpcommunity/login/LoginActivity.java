@@ -10,6 +10,8 @@ import com.lvyerose.helpcommunity.R;
 import com.lvyerose.helpcommunity.base.BaseActivity;
 import com.lvyerose.helpcommunity.base.Const;
 import com.lvyerose.helpcommunity.common.network.NetworkServer;
+import com.lvyerose.helpcommunity.im.ConnectListen;
+import com.lvyerose.helpcommunity.im.IMUtils;
 import com.lvyerose.helpcommunity.main.MainActivity_;
 import com.lvyerose.helpcommunity.utils.ACache;
 import com.squareup.okhttp.Request;
@@ -56,13 +58,30 @@ public class LoginActivity extends BaseActivity {
             }
 
             @Override
-            public void onResponse(UserInfoBean userInfoBean) {
+            public void onResponse(final UserInfoBean userInfoBean) {
                 cancelDialog();
                 Toast.makeText(LoginActivity.this, userInfoBean.getMessage(), Toast.LENGTH_LONG).show();
                 if (userInfoBean != null && "success".equals(userInfoBean.getStatus())) {
-                    ACache aCache = ACache.get(LoginActivity.this);
-                    aCache.put(Const.ACACHE_USER_ID, userInfoBean.getData().getUser_phone());
-                    startActivity(userInfoBean);
+                    IMUtils imUtils = new IMUtils(LoginActivity.this, new ConnectListen() {
+                        @Override
+                        public void success(String userId) {
+                            //设置自己的信息缓存
+//                          IMUtils.setUserInfo(userInfoBean.getData().getUser_phone() , userInfoBean.getData().getUser_icon() , userInfoBean.getData().getNick_name());
+                            ACache aCache = ACache.get(LoginActivity.this);
+                            aCache.put(Const.ACACHE_USER_ID, userId);
+                            aCache.put(Const.ACACHE_USER_PHONE, userInfoBean.getData().getUser_phone());
+                            aCache.put(Const.ACACHE_USER_ICON , userInfoBean.getData().getUser_icon());
+                            aCache.put(Const.ACACHE_USER_NAME , userInfoBean.getData().getNick_name());
+                            startActivity(userInfoBean);
+                        }
+
+                        @Override
+                        public void fail(String message) {
+
+                        }
+                    });
+                    imUtils.connect(userInfoBean.getData().getUser_token());
+
                 }
             }
         });
@@ -112,7 +131,7 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-    void startActivity(UserInfoBean userInfoBean){
+    void startActivity(UserInfoBean userInfoBean) {
         MainActivity_.intent(LoginActivity.this).user_info(userInfoBean).start();
         finish();
 

@@ -13,6 +13,8 @@ import com.lvyerose.helpcommunity.R;
 import com.lvyerose.helpcommunity.base.BaseActivity;
 import com.lvyerose.helpcommunity.base.Const;
 import com.lvyerose.helpcommunity.common.network.NetworkServer;
+import com.lvyerose.helpcommunity.im.ConnectListen;
+import com.lvyerose.helpcommunity.im.IMUtils;
 import com.lvyerose.helpcommunity.main.MainActivity_;
 import com.lvyerose.helpcommunity.utils.ACache;
 import com.squareup.okhttp.Request;
@@ -111,14 +113,30 @@ public class RegisterActivity extends BaseActivity {
             }
 
             @Override
-            public void onResponse(UserInfoBean userInfoBean) {
+            public void onResponse(final UserInfoBean userInfoBean) {
                 cancelDialog();
                 Toast.makeText(RegisterActivity.this , userInfoBean.getMessage() , Toast.LENGTH_LONG).show();
                 if(userInfoBean != null && "success".equals(userInfoBean.getStatus())){
-                    ACache aCache = ACache.get(RegisterActivity.this);
-                    aCache.put(Const.ACACHE_USER_ID, userInfoBean.getData().getUser_phone());
-                    MainActivity_.intent(RegisterActivity.this).user_info(userInfoBean).start();
-                    finish();
+                    IMUtils imUtils = new IMUtils(RegisterActivity.this, new ConnectListen() {
+                        @Override
+                        public void success(String userId) {
+                            ACache aCache = ACache.get(RegisterActivity.this);
+                            aCache.put(Const.ACACHE_USER_ID, userId);
+                            aCache.put(Const.ACACHE_USER_PHONE, userInfoBean.getData().getUser_phone());
+                            aCache.put(Const.ACACHE_USER_ICON , userInfoBean.getData().getUser_icon());
+                            aCache.put(Const.ACACHE_USER_NAME , userInfoBean.getData().getNick_name());
+
+                            MainActivity_.intent(RegisterActivity.this).user_info(userInfoBean).start();
+                            finish();
+                        }
+
+                        @Override
+                        public void fail(String message) {
+
+                        }
+                    });
+                    imUtils.connect(userInfoBean.getData().getUser_token());
+
                 }
             }
         });

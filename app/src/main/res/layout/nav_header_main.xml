@@ -1,26 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/side_nav_bar"
-    android:gravity="bottom"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/slidingmenu_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="48dp"
+    android:paddingBottom="48dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <com.github.siyamed.shapeimageview.CircularImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/me_userpricture_img"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@mipmap/ic_launcher"
-        android:layout_marginTop="32dp"
-        app:siBorderWidth="2dp"
-        app:siBorderColor="#ffffff"/>
 
+    <com.facebook.drawee.view.SimpleDraweeView
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/id_sliding_icon_sdwv"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginLeft="32dp"
+        fresco:roundAsCircle="true"
+        fresco:roundingBorderColor="#e9ffffff"
+        fresco:roundingBorderWidth="1dp"
+        fresco:placeholderImage="@drawable/defult_user"
+        fresco:placeholderImageScaleType="fitCenter"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="蜀汉玫瑰"
+            android:layout_marginLeft="16dp"
+            android:textSize="18sp"
+            android:lines="1"
+            android:textColor="@color/sliding_heard_text_color"
+            android:id="@+id/id_sliding_nick"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18311321513"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="6dp"
+            android:lines="1"
+            android:textSize="16sp"
+            android:textColor="@color/sliding_heard_text_color"
+            android:id="@+id/id_sliding_phone"
+            />
+    </LinearLayout>
 
 
 </LinearLayout>

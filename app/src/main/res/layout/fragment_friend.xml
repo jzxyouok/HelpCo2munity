@@ -5,11 +5,9 @@
     tools:context="layout.MessageFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="@color/md_blue_400"
-        android:text="好友界面" />
+        android:id="@+id/id_friend_list"/>
 
 </FrameLayout>

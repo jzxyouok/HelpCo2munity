@@ -110,7 +110,7 @@ public class EditMessageActivity extends AppCompatActivity {
 
     private void updateMessage(){
         ACache aCache = ACache.get(this);
-        NetworkServer.updateMessage(aCache.getAsString(Const.ACACHE_USER_ID), type, inputOneLineEdt.getText().toString().trim(),
+        NetworkServer.updateMessage(aCache.getAsString(Const.ACACHE_USER_PHONE), type, inputOneLineEdt.getText().toString().trim(),
                 new ResultCallback<UserInfoBean>() {
                     @Override
                     public void onError(Request request, Exception e) {
