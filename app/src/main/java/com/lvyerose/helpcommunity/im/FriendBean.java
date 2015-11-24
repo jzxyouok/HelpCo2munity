@@ -54,6 +54,15 @@ public class FriendBean {
         private String user_phone;
         private String nick_name;
         private String user_icon;
+        private String user_dec;
+
+        public String getUser_dec() {
+            return user_dec;
+        }
+
+        public void setUser_dec(String user_dec) {
+            this.user_dec = user_dec;
+        }
 
         public void setUser_phone(String user_phone) {
             this.user_phone = user_phone;

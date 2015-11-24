@@ -1,27 +1,45 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:background="#215c59"
-    android:padding="16dp"
+    android:background="#ffffff"
+    android:padding="12dp"
     android:orientation="horizontal">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/id_item_friend_Img_sdwv"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        fresco:roundAsCircle="true"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="12dp"
+        fresco:roundingBorderWidth="1dp"
+        fresco:roundingBorderColor="#9c700a"
+        fresco:roundedCornerRadius="3dp"
         fresco:placeholderImage="@drawable/defult_user"
         />
 
     <TextView
+        android:id="@+id/id_item_friend_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/id_item_friend_name_tv"
         android:text="昵称***"
-        android:layout_marginLeft="32dp"
-        android:textSize="18sp"
-        android:textColor="#2d1d1d"
+        android:layout_marginLeft="16dp"
+        android:textSize="16sp"
+        android:layout_toRightOf="@+id/id_item_friend_Img_sdwv"
+        android:textColor="#34373b"
         />
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/id_item_friend_dec_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="生活源于生命啥的一堆废话***"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="4dp"
+        android:textSize="12sp"
+        android:layout_below="@+id/id_item_friend_name_tv"
+        android:layout_toRightOf="@+id/id_item_friend_Img_sdwv"
+        android:textColor="#8D8E8F"
+        />
+</RelativeLayout>
