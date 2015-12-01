@@ -120,6 +120,9 @@ public class RegisterActivity extends BaseActivity {
                     IMUtils imUtils = new IMUtils(RegisterActivity.this, new ConnectListen() {
                         @Override
                         public void success(String userId) {
+
+                            IMUtils.Mobclick(userId);
+
                             ACache aCache = ACache.get(RegisterActivity.this);
                             aCache.put(Const.ACACHE_USER_ID, userId);
                             aCache.put(Const.ACACHE_USER_PHONE, userInfoBean.getData().getUser_phone());
@@ -132,7 +135,6 @@ public class RegisterActivity extends BaseActivity {
 
                         @Override
                         public void fail(String message) {
-
                         }
                     });
                     imUtils.connect(userInfoBean.getData().getUser_token());

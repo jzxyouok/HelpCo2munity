@@ -34,4 +34,20 @@
     <string name="title_activity_conversation">ConversationActivity</string>
 
 
+
+    <!-- dialog相关字段 -->
+    <string name="common_title_tips">温馨提示</string>
+    <string name="common_confirm">确定</string>
+    <string name="common_cancel">取消</string>
+    <string name="take_poto">拍照</string>
+    <string name="import_poto">从本地导入</string>
+    <string name="common_loading_tips">努力加载&#8230;</string>
+    <string name="common_record">按住录音</string>
+    <string name="submit_text">提交</string>
+    <string name="record_time_text">音频时间至少2s，请重试</string>
+    <string name="record_time_max_text">音频时间最长为10s</string>
+    <string name="search_text">搜索</string>
+    <string name="de_dialog_item_message_delete">删除消息</string>
+
+
 </resources>
