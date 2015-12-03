@@ -60,4 +60,10 @@
 
 
     <color name="cache_color" >#FFF5F5F5</color>
+
+    <!--add friend -->
+    <color name="not_result_text">#cccccc</color>
+    <color name="not_result_bg">#f4f4f4</color>
+
+
 </resources>

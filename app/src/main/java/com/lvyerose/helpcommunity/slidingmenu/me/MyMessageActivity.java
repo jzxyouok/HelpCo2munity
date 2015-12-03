@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -23,6 +22,7 @@ import com.baoyz.actionsheet.ActionSheet;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.lvyerose.helpcommunity.R;
+import com.lvyerose.helpcommunity.base.BaseActivity;
 import com.lvyerose.helpcommunity.base.Const;
 import com.lvyerose.helpcommunity.common.network.NetworkConst;
 import com.lvyerose.helpcommunity.common.network.NetworkServer;
@@ -48,7 +48,7 @@ import java.util.Map;
 
 
 @EActivity(R.layout.activity_my_message)
-public class MyMessageActivity extends AppCompatActivity implements ActionSheet.ActionSheetListener {
+public class MyMessageActivity extends BaseActivity implements ActionSheet.ActionSheetListener {
     @Extra
     UserInfoBean userInfo;
     @ViewById(R.id.top_rendbg_view)

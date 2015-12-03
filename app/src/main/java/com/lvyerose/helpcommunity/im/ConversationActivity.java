@@ -2,12 +2,12 @@ package com.lvyerose.helpcommunity.im;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
 import com.lvyerose.helpcommunity.R;
+import com.lvyerose.helpcommunity.base.BaseActivity;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -19,7 +19,7 @@ import io.rong.imkit.fragment.ConversationFragment;
 import io.rong.imlib.model.Conversation;
 
 @EActivity(R.layout.activity_conversation)
-public class ConversationActivity extends AppCompatActivity {
+public class ConversationActivity extends BaseActivity {
 
 
     /**
@@ -55,9 +55,9 @@ public class ConversationActivity extends AppCompatActivity {
             }
         });
 
-                Intent intent = getIntent();
-                getIntentDate(intent);
-            }
+        Intent intent = getIntent();
+        getIntentDate(intent);
+    }
 
 
             /**

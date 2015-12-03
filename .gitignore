@@ -39,4 +39,5 @@ proguard/
 *.ipr
 *.iws
 .idea/
+.IMKit
 

@@ -5,9 +5,14 @@ import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.lvyerose.helpcommunity.im.IMUtils;
-import com.tencent.bugly.crashreport.CrashReport;
+import com.lvyerose.helpcommunity.im.message.CustomizeMessage;
+import com.lvyerose.helpcommunity.utils.ACache;
+import com.lvyerose.helpcommunity.utils.NotificationUtils;
 
 import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.Message;
+import io.rong.imlib.model.MessageContent;
 
 /**
  * author: lvyeRose
@@ -25,7 +30,6 @@ public class BaseApplication extends Application{
     public void onCreate() {
         super.onCreate();
         application = this;
-        initCrashReport(this);
         initFresco(this);
         initRongIM();
     }
@@ -34,14 +38,6 @@ public class BaseApplication extends Application{
         Fresco.initialize(context);
 
     }
-    /**
-     *  腾讯bug捕捉初始化
-     * @param appContext
-     */
-    public void initCrashReport(Context appContext){
-        CrashReport.initCrashReport(appContext, "900011750", false);
-    }
-
 
     /**
      * 初始化融云SDK
@@ -58,7 +54,32 @@ public class BaseApplication extends Application{
              * IMKit SDK调用第一步 初始化
              */
             RongIM.init(this);
+            RongIM.registerMessageType(CustomizeMessage.class);
+//            RongIM.setOnReceivePushMessageListener(new RongIMClient.OnReceivePushMessageListener() {
+//                @Override
+//                public boolean onReceivePushMessage(PushNotificationMessage pushNotificationMessage) {
+//                    return false;
+//                }
+//            });
+            // 设置消息接收监听器。
+            RongIM.setOnReceiveMessageListener(new RongIMClient.OnReceiveMessageListener() {
+                @Override
+                public boolean onReceived(Message message, int i) {
+                    MessageContent messageContent = message.getContent();
+
+                    if (messageContent instanceof CustomizeMessage){
+                        NotificationUtils.sendNotification(getApplicationContext() , "好友验证" , "点击进入好友请求列表查看详情");
+                        ACache.get(getApplicationContext()).put(Const.ACACHE_MSG_NEW , "1");
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
         }
     }
+
+
+
 
 }

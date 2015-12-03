@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#00000000">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_select_bg"
+        android:layout_margin="32dp">
+
+        <EditText
+            android:id="@+id/add_friend_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="56dp"
+            android:layout_marginRight="56dp"
+            android:layout_marginTop="56dp"
+            android:drawablePadding="5dip"
+            android:hint="对方账号"
+            android:singleLine="true"
+            android:maxLength="11"
+            android:textColor="#999999"
+            android:textColorHint="@color/not_result_text"
+            android:textSize="14sp"
+            android:inputType="number"
+            android:padding="16dp"
+            />
+
+
+        <Button
+            android:id="@+id/add_friend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="64dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/de_pic_action_btn"
+            android:minHeight="1dp"
+            android:minWidth="1dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="添加好友"
+            android:textColor="@color/send_friend_default_text_color"
+            android:textSize="14sp"
+            android:layout_below="@+id/add_friend_id" />
+
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/add_friend_cancel_imbtn"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/icon_cancel_top_btn" />
+</RelativeLayout>

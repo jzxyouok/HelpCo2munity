@@ -3,13 +3,13 @@ package com.lvyerose.helpcommunity.wellcome;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.lvyerose.helpcommunity.R;
+import com.lvyerose.helpcommunity.base.BaseActivity;
 import com.lvyerose.helpcommunity.base.Const;
 import com.lvyerose.helpcommunity.login.LoginActivity_;
 import com.lvyerose.helpcommunity.main.MainActivity_;
@@ -32,7 +32,7 @@ import tyrantgit.explosionfield.ExplosionField;
  * time: 15/10/24 02:07
  */
 @EActivity(R.layout.activity_wellcome)
-public class WellComeActivity extends AppCompatActivity {
+public class WellComeActivity extends BaseActivity {
     @ViewById(R.id.id_wellComeTop_imv)
     ImageView mTop_imv;
     @ViewById(R.id.id_wellComeText1_imv)
@@ -154,8 +154,10 @@ public class WellComeActivity extends AppCompatActivity {
         ACache mCache = ACache.get(this , Const.ACACHE_NAME);
         String value = mCache.getAsString(Const.ACACHE_USER_ID);
         if(TextUtils.isEmpty(value)){
+//            startActivity(new Intent(WellComeActivity.this , LoginActivity.class));
             LoginActivity_.intent(this).start();
         }else{
+//            startActivity(new Intent(WellComeActivity.this , MainActivity.class));
             MainActivity_.intent(this).start();
         }
         overridePendingTransition(R.anim.wellcome_alpha_in, R.anim.wellcome_alpha_in);

@@ -34,7 +34,6 @@
     <string name="title_activity_conversation">ConversationActivity</string>
 
 
-
     <!-- dialog相关字段 -->
     <string name="common_title_tips">温馨提示</string>
     <string name="common_confirm">确定</string>
@@ -48,6 +47,7 @@
     <string name="record_time_max_text">音频时间最长为10s</string>
     <string name="search_text">搜索</string>
     <string name="de_dialog_item_message_delete">删除消息</string>
+    <string name="title_activity_request_list">RequestListActivity</string>
 
 
 </resources>

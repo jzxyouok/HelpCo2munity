@@ -2,11 +2,14 @@ package com.lvyerose.helpcommunity.im;
 
 import android.net.Uri;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.lvyerose.helpcommunity.R;
 import com.lvyerose.helpcommunity.base.BaseFragment;
-import com.lvyerose.helpcommunity.utils.NToast;
+import com.lvyerose.helpcommunity.base.Const;
+import com.lvyerose.helpcommunity.utils.ACache;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -44,11 +47,24 @@ public class MessageFragment extends BaseFragment {
         transaction.commit();
     }
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        setChangNotify();
+    }
 
     @Click(R.id.id_message_request_friend)
     void toRequestFriend(){
-        NToast.shortToast(getActivity() , "点击新消息");
+        RequestListActivity_.intent(getActivity()).start();
+        ACache.get(getActivity()).put(Const.ACACHE_MSG_NEW , "0");
+    }
+
+    private void setChangNotify(){
+        if (TextUtils.isEmpty(ACache.get(getActivity()).getAsString(Const.ACACHE_MSG_NEW)) || "0".equals(ACache.get(getActivity()).getAsString(Const.ACACHE_MSG_NEW))){
+            isMsgImv.setVisibility(View.GONE);
+        }else {
+            isMsgImv.setVisibility(View.VISIBLE);
+        }
     }
 
 

@@ -1,6 +1,5 @@
 package com.lvyerose.helpcommunity.slidingmenu.me;
 
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.widget.EditText;
@@ -8,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lvyerose.helpcommunity.R;
+import com.lvyerose.helpcommunity.base.BaseActivity;
 import com.lvyerose.helpcommunity.base.Const;
 import com.lvyerose.helpcommunity.common.network.NetworkServer;
 import com.lvyerose.helpcommunity.login.UserInfoBean;
@@ -24,7 +24,7 @@ import org.androidannotations.annotations.ViewById;
 import org.simple.eventbus.EventBus;
 
 @EActivity(R.layout.activity_edit_message)
-public class EditMessageActivity extends AppCompatActivity {
+public class EditMessageActivity extends BaseActivity {
     @Extra
     String title;
     @Extra

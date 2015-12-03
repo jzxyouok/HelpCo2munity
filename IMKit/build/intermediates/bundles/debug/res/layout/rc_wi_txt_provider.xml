@@ -39,6 +39,12 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="0px"
+            android:layout_height="0px"/>
+
         <EditText
             android:id="@android:id/edit"
             android:layout_width="match_parent"
@@ -55,4 +61,4 @@
     </RelativeLayout>
 
 
-</FrameLayout><!-- From: file:/Users/lvyeRose/work/goodcode/HelpCo2munity/IMKit/src/main/res/layout/rc_wi_txt_provider.xml -->
+</FrameLayout>

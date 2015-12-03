@@ -1,10 +1,13 @@
 package com.lvyerose.helpcommunity.utils;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.view.Display;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * author: lvyeRose
@@ -58,6 +61,29 @@ public final static String ACTIVITY_WIDTH = "activity_width";
         SimpleDateFormat df = new SimpleDateFormat(format);//设置日期格式
         time = df.format(new Date(System.currentTimeMillis()));// new Date()为获取当前系统时间
         return time;
+    }
+
+    /**
+     * 邮箱格式是否正确
+     *
+     * @param email
+     * @return
+     */
+    public boolean isEmail(String email) {
+
+        if (TextUtils.isEmpty(email))
+            return false;
+
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+
+        if (matcher.matches())
+            return true;
+        else
+            return false;
+
     }
 
 

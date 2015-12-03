@@ -27,6 +27,14 @@ public class NetworkConst {
     public static final String GET_LIST = MAIN_ + "Activity/getlist";
     /** 好友列表获取*/
     public static final String GET_FRIEND = MAIN_ + "Friend/friends";
+    /** 发送添加好友请求*/
+    public static final String SEND_FRIEND = MAIN_ + "AddFriend/send";
+    /** 同意好友请求*/
+    public static final String AGREED_FRIEND = MAIN_ + "AddFriend/agreement";
+    /** 拒绝好友请求*/
+    public static final String REJECT_FRIEND = MAIN_ + "AddFriend/reject";
+    /** 获取好友请求列表*/
+    public static final String GET_REQUEST_FRIEND = MAIN_ + "AddFriend/getRequestFriend";
 
 
 

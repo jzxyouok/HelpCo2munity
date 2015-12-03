@@ -12,6 +12,7 @@ public class Const {
     public final static String ACACHE_USER_PHONE = "user_phone";
     public final static String ACACHE_USER_ICON = "user_icon";
     public final static String ACACHE_USER_NAME = "user_name";
+    public final static String ACACHE_MSG_NEW = "is_new_msg";
 
 
     //设置用户信息背景图片选择请求

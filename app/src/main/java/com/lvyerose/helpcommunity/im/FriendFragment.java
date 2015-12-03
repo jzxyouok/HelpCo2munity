@@ -25,7 +25,6 @@ import org.androidannotations.annotations.ViewById;
 import java.util.List;
 
 import io.rong.imkit.RongIM;
-import io.rong.imlib.model.UserInfo;
 
 /**
  * author: lvyeRose
@@ -71,13 +70,14 @@ public class FriendFragment extends BaseFragment {
             public void onResponse(FriendBean friendBean) {
                 if (friendBean != null && "success".equals(friendBean.getStatus())) {
                     friendList = friendBean.getData();
+                    new IMUtils(getActivity()).initUserInfoProvider(friendList);
                     setData();
                 }
             }
         });
     }
 
-    void refreshFinsh() {
+    void refreshFinish() {
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setRefreshing(false);
             if (friendList != null && friendList.size() > 0) {
@@ -104,48 +104,17 @@ public class FriendFragment extends BaseFragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                     if (RongIM.getInstance() != null) {
-                        /**
-                         * 启动单聊界面。
-                         *
-                         * @param context      应用上下文。
-                         * @param targetUserId 要与之聊天的用户 Id。
-                         * @param title        聊天的标题，如果传入空值，则默认显示与之聊天的用户名称。
-                         */
-                        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
-                            @Override
-                            public UserInfo getUserInfo(String s) {
-                                return findById(s);
-                            }
-                        }, true);
-
-
                         RongIM.getInstance().startPrivateChat(getActivity(), friendList.get(position).getUser_phone(), friendList.get(position).getNick_name());
-
                     }
                 }
             });
         }else {
-            refreshFinsh();
+            refreshFinish();
         }
 
     }
 
 
-    UserInfo findById(String user_id) {
-        ACache aCache = ACache.get(getActivity());
-        if (user_id.equals(aCache.getAsString(Const.ACACHE_USER_PHONE))) {
-            return new UserInfo(aCache.getAsString(Const.ACACHE_USER_PHONE)
-                    , aCache.getAsString(Const.ACACHE_USER_NAME)
-                    , Uri.parse(aCache.getAsString(Const.ACACHE_USER_ICON)));
-        }
-        for (int i = 0; i < friendList.size(); i++) {
-            if (friendList.get(i).getUser_phone().equals(user_id)) {
-                return new UserInfo(friendList.get(i).getUser_phone(), friendList.get(i).getNick_name(), Uri.parse(friendList.get(i).getUser_icon()));
-
-            }
-        }
-        return null;
-    }
 
 
 }

@@ -113,5 +113,66 @@ public class NetworkServer {
         new BaseNetwor().post(url, params, resultCallback);
     }
 
+    /**
+     * 发送添加好友请求
+     *
+     * @param user_id
+     * @param friend_id
+     * @param resultCallback
+     */
+    public static void sendFriendRequest(String user_id,
+                                        String friend_id,
+                                        ResultCallback<?> resultCallback) {
+        String url = NetworkConst.SEND_FRIEND;
+        Map<String, String> params = new HashMap<>();
+        params.put("user_id", user_id);
+        params.put("friend_id", friend_id);
+        new BaseNetwor().post(url, params, resultCallback);
+    }
+    /**
+     * 接受好友请求
+     *
+     * @param user_id
+     * @param friend_id
+     * @param resultCallback
+     */
+    public static void agreedFriendRequest(String user_id,
+                                        String friend_id,
+                                        ResultCallback<?> resultCallback) {
+        String url = NetworkConst.AGREED_FRIEND;
+        Map<String, String> params = new HashMap<>();
+        params.put("user_id", friend_id);
+        params.put("friend_id", user_id);
+        new BaseNetwor().post(url, params, resultCallback);
+    }/**
+     * 拒绝好友请求
+     *
+     * @param user_id
+     * @param friend_id
+     * @param resultCallback
+     */
+    public static void rejectFriendRequest(String user_id,
+                                        String friend_id,
+                                        ResultCallback<?> resultCallback) {
+        String url = NetworkConst.REJECT_FRIEND;
+        Map<String, String> params = new HashMap<>();
+        params.put("user_id", friend_id);
+        params.put("friend_id", user_id);
+        new BaseNetwor().post(url, params, resultCallback);
+    }
+    /**
+     * 获取好友请求列表
+     *
+     * @param user_id
+     * @param resultCallback
+     */
+    public static void getRequestFriend(String user_id,
+                                        ResultCallback<?> resultCallback) {
+        String url = NetworkConst.GET_REQUEST_FRIEND;
+        Map<String, String> params = new HashMap<>();
+        params.put("user_id", user_id);
+        new BaseNetwor().post(url, params, resultCallback);
+    }
+
 
 }

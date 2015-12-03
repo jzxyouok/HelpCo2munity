@@ -65,8 +65,9 @@ public class LoginActivity extends BaseActivity {
                     IMUtils imUtils = new IMUtils(LoginActivity.this, new ConnectListen() {
                         @Override
                         public void success(String userId) {
+
+                            IMUtils.Mobclick(userId);
                             //设置自己的信息缓存
-//                          IMUtils.setUserInfo(userInfoBean.getData().getUser_phone() , userInfoBean.getData().getUser_icon() , userInfoBean.getData().getNick_name());
                             ACache aCache = ACache.get(LoginActivity.this);
                             aCache.put(Const.ACACHE_USER_ID, userId);
                             aCache.put(Const.ACACHE_USER_PHONE, userInfoBean.getData().getUser_phone());

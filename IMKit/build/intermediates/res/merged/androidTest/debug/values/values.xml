@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/lvyeRose/work/goodcode/HelpCo2munity/IMKit/build/intermediates/bundles/debug/res/values/values.xml -->
-    <eat-comment/>
     <integer-array name="rc_emoji_code">
             <item>0x1f60a</item>
             <item>0x1f628</item>
@@ -264,6 +262,7 @@
     </array>
     <bool name="rc_is_show_warning_notification">true</bool>
     <bool name="rc_play_audio_continuous">true</bool>
+    <bool name="rc_read_receipt">false</bool>
     <color name="rc_conversation_top_bg">#f2faff</color>
     <color name="rc_draft_color">#cb120f</color>
     <color name="rc_input_bg">#F4F4F4</color>
@@ -295,6 +294,7 @@
     <item name="rc_content" type="id"/>
     <item name="rc_conversation_content" type="id"/>
     <item name="rc_conversation_msg_block" type="id"/>
+    <item name="rc_conversation_status" type="id"/>
     <item name="rc_conversation_time" type="id"/>
     <item name="rc_conversation_title" type="id"/>
     <item name="rc_fragment" type="id"/>
@@ -405,9 +405,8 @@
     <string name="rc_notice_network_unavailable">当前网络不可用</string>
     <string name="rc_notice_select_one_picture_at_last">请至少选择一张图片</string>
     <string name="rc_notice_tick">该账号已经在其他设备登录</string>
-    <string name="rc_notification_contact">个联系人</string>
-    <string name="rc_notification_msg">条消息</string>
-    <string name="rc_notification_send">发来了</string>
+    <string name="rc_notification_new_msg">%1$s发来了%2$d条消息</string>
+    <string name="rc_notification_new_plural_msg">%1$d个联系人发来了%2$d条消息</string>
     <string name="rc_notification_ticker_text">您有了一条新消息</string>
     <string name="rc_plugins_camera">相机</string>
     <string name="rc_plugins_image">图片</string>

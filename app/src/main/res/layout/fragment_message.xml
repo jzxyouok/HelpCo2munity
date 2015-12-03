@@ -1,16 +1,63 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="layout.MessageFragment">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <Button
-        android:id="@+id/to_IM"
+    <RelativeLayout
+        android:id="@+id/id_message_request_friend"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/md_blue_400"
-        android:gravity="center"
-        android:text="点击和你聊天" />
+        android:layout_height="64dp"
+        android:background="#ffffffff"
+        android:gravity="center_vertical"
+        android:padding="8dp">
 
-</FrameLayout>
+
+        <ImageView
+            android:id="@+id/rc_left"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_system_msg" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/rc_left"
+            android:layout_marginLeft="26dp"
+            android:textSize="16sp"
+            android:textColor="#575757"
+            android:text="好友请求"/>
+
+        <ImageView
+            android:id="@+id/id_message_new_msg"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginRight="6dp"
+            android:layout_toLeftOf="@+id/to_right_imv"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            />
+        <ImageView
+            android:id="@+id/to_right_imv"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_to_right_2"
+            android:scaleType="fitXY"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#ecf0f1"/>
+
+    <FrameLayout
+        android:id="@+id/rong_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

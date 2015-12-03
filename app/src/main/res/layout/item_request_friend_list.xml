@@ -1,0 +1,111 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="12dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/id_item_request_friend_Img_sdwv"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="12dp"
+        fresco:roundingBorderWidth="1dp"
+        fresco:roundingBorderColor="#0a9c73"
+        fresco:roundedCornerRadius="3dp"
+        fresco:placeholderImage="@drawable/defult_user"
+        />
+
+    <TextView
+        android:id="@+id/id_item_request_friend_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/id_item_request_friend_Img_sdwv"
+        android:text="蜀汉玫瑰"
+        android:textColor="#34373b"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_item_request_friend_name_tv"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@+id/id_item_request_friend_Img_sdwv"
+        android:text="请求添加好友"
+        android:textColor="#8D8E8F"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/item_state_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true">
+
+        <ImageButton
+            android:layout_width="72dp"
+            android:layout_height="32dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:layout_marginRight="6dp"
+            android:src="@drawable/item_icon_agreed"
+            />
+
+        <ImageButton
+            android:layout_width="72dp"
+            android:layout_height="32dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:layout_marginLeft="6dp"
+            android:src="@drawable/item_icon_reject" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/item_state_agreed"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:src="@drawable/item_request_agreed_state"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="36dp"
+        />
+
+    <ImageView
+        android:id="@+id/item_state_reject"
+        android:visibility="gone"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/item_request_reject_state"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="32dp"
+        />
+    <LinearLayout
+        android:id="@+id/item_state_wait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/item_request_wait_state"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="待验证..."
+            android:textSize="10sp"
+            android:layout_gravity="center_vertical"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>
